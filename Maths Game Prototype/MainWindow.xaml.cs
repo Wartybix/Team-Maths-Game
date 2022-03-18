@@ -20,8 +20,6 @@ namespace Maths_Game_Prototype
         {
             InitializeComponent();
 
-            //testing
-
             _menus = new[] { WelcomeScreen, KsMenu, QuizMenu, QuizInstance }; //Populates menus array with all menus in the UI
         }
 
