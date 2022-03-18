@@ -55,7 +55,6 @@ namespace Maths_Game_Prototype
         {
             TransitionTo(KsMenu);
         }
-        #endregion
 
         private void WelcomeBtn_OnClick(object sender, RoutedEventArgs e)
         {
@@ -71,5 +70,9 @@ namespace Maths_Game_Prototype
         {
             TransitionTo(QuizInstance);
         }
+
+        #endregion
+
+
     }
 }
