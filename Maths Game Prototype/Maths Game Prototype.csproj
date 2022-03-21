@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <RootNamespace>Maths_Game_Prototype</RootNamespace>
-    <Nullable>enable</Nullable>
+	  <!-->Nullable>disable</Nullable-->
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
