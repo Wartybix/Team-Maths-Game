@@ -9,6 +9,7 @@
 
     <Window.Resources>
         <FontFamily x:Key="ComicNeue-Bold">pack://application:,,,/Fonts/#Comic Neue Bold</FontFamily>
+        <!--FontFamily x:Key="ComicNeueAngular-Bold">pack://application:,,,/Fonts/#Comic Neue Angular Bold</FontFamily-->
         <FontFamily x:Key="ComicNeue-Regular">pack://application:,,,/Fonts/#Comic Neue Regular</FontFamily>
 
         <Style TargetType="{x:Type TextBlock}">
@@ -76,7 +77,7 @@
                 </Grid>
 
                 <TextBlock Name="QuestionTxt" TextWrapping="Wrap" Margin="0 32 0 0">
-                    What is 6+5. Answer me.
+                    <Bold>What is 6+5.</Bold> Answer me.
                 </TextBlock>
 
                 <TextBox Width="128" HorizontalAlignment="Left"/>
