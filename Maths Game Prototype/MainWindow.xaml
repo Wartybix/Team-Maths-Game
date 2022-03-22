@@ -70,7 +70,10 @@
         <Grid Name="QuizInstance" Background="LightGray" Visibility="Collapsed">
             <StackPanel VerticalAlignment="Top">
                 <Grid>
-                    <Button Name="ExitQuizBtn" Content="Exit" Click="ExitQuizBtn_OnClick" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Name="ExitQuizBtn" Content="Exit" Click="ExitQuizBtn_OnClick" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Example Game" Background="MediumPurple" Margin="16 0 0 0"/>
+                    </StackPanel>
                     <TextBlock Name="ScoreTxt" HorizontalAlignment="Right" VerticalAlignment="Top">
                         Score: <Bold>0</Bold>
                     </TextBlock>
