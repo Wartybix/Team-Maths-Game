@@ -12,7 +12,9 @@ namespace Maths_Game_Prototype
 
         #region Variable initialisation
 
-        private readonly Grid[] _menus; //Holds all menu grids (i.e. KS2 selection menu, quiz selection menu, etc.)
+        private Grid currentlyOpenMenu; //Holds the menu currently visible
+
+
 
         #endregion
 
@@ -20,7 +22,7 @@ namespace Maths_Game_Prototype
         {
             InitializeComponent();
 
-            _menus = new[] { WelcomeScreen, KsMenu, QuizMenu, QuizInstance }; //Populates menus array with all menus in the UI
+            currentlyOpenMenu = WelcomeScreen;
         }
 
         #region Menu logic
@@ -32,10 +34,10 @@ namespace Maths_Game_Prototype
         /// <param name="destinationMenu">The menu to be made visible</param>
         private void TransitionTo(Grid destinationMenu)
         {
-            foreach (var menu in _menus)
-            {
-                menu.Visibility = menu == destinationMenu ? Visibility.Visible : Visibility.Collapsed;
-            }
+            currentlyOpenMenu.Visibility = Visibility.Collapsed;
+            destinationMenu.Visibility = Visibility.Visible;
+
+            currentlyOpenMenu = destinationMenu;
         }
 
         #endregion
