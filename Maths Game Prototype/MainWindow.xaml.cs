@@ -12,7 +12,7 @@ namespace Maths_Game_Prototype
 
         #region Variable initialisation
 
-        private Grid currentlyOpenMenu; //Holds the menu currently visible
+        private Grid _currentlyOpenMenu; //Holds the menu currently visible
 
 
 
@@ -22,7 +22,7 @@ namespace Maths_Game_Prototype
         {
             InitializeComponent();
 
-            currentlyOpenMenu = WelcomeScreen;
+            _currentlyOpenMenu = WelcomeScreen;
         }
 
         #region Menu logic
@@ -34,10 +34,10 @@ namespace Maths_Game_Prototype
         /// <param name="destinationMenu">The menu to be made visible</param>
         private void TransitionTo(Grid destinationMenu)
         {
-            currentlyOpenMenu.Visibility = Visibility.Collapsed;
+            _currentlyOpenMenu.Visibility = Visibility.Collapsed;
             destinationMenu.Visibility = Visibility.Visible;
 
-            currentlyOpenMenu = destinationMenu;
+            _currentlyOpenMenu = destinationMenu;
         }
 
         #endregion
