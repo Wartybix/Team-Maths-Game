@@ -32,8 +32,6 @@ namespace Maths_Game_Prototype
 
         public override void DisplayQuestion()
         {
-            base.DisplayQuestion();
-
 
         }
     }
