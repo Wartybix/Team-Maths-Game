@@ -12,7 +12,7 @@ namespace Maths_Game_Prototype
     {
         public MentalMathsQuiz()
         {
-            Name = "Mental Maths";
+            QuizName = "Mental Maths";
         }
 
         public override void NewGame()

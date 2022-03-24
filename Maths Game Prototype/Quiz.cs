@@ -10,10 +10,10 @@ namespace Maths_Game_Prototype
 {
     internal abstract class Quiz
     {
-        public string Name { get; set; }
+        public string QuizName { get; set; }
         public Question[] Questions = new Question[5];
         protected Random Randoms;
-        private MainWindow mainWindow;
+        protected MainWindow MainWindow;
 
 
         /// <summary>
@@ -23,8 +23,10 @@ namespace Maths_Game_Prototype
         /// </summary>
         public virtual void NewGame()
         {
-            mainWindow = (MainWindow) Application.Current.MainWindow;
+            MainWindow = (MainWindow) Application.Current.MainWindow;
             Randoms = new Random();
+
+            if (MainWindow != null) MainWindow.QuizNameTxt.Text = QuizName;
         }
 
         /// <summary>
