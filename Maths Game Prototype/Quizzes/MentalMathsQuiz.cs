@@ -10,8 +10,9 @@ namespace Maths_Game_Prototype
 {
     internal class MentalMathsQuiz : Quiz
     {
-        public MentalMathsQuiz(string name) : base(name)
+        public MentalMathsQuiz()
         {
+            Name = "Mental Maths";
         }
 
         public override void NewGame()

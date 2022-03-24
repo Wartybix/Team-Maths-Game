@@ -15,10 +15,6 @@ namespace Maths_Game_Prototype
         protected Random Randoms;
         private MainWindow mainWindow;
 
-        protected Quiz(string name)
-        {
-            Name = name;
-        }
 
         /// <summary>
         /// Adds questions to the quiz (in derived classes)
