@@ -13,6 +13,7 @@ namespace Maths_Game_Prototype
         public string Name { get; set; }
         public Question[] Questions = new Question[5];
         protected Random Randoms;
+        private MainWindow mainWindow;
 
         protected Quiz(string name)
         {
@@ -26,15 +27,13 @@ namespace Maths_Game_Prototype
         /// </summary>
         public virtual void NewGame()
         {
+            mainWindow = (MainWindow) Application.Current.MainWindow;
             Randoms = new Random();
         }
 
         /// <summary>
         /// Sets up the UI to display the current question.
         /// </summary>
-        public virtual void DisplayQuestion()
-        {
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-        }
+        public abstract void DisplayQuestion();
     }
 }
