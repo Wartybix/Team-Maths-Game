@@ -12,39 +12,143 @@
         <!--FontFamily x:Key="ComicNeueAngular-Bold">pack://application:,,,/Fonts/#Comic Neue Angular Bold</FontFamily-->
         <FontFamily x:Key="ComicNeue-Regular">pack://application:,,,/Fonts/#Comic Neue Regular</FontFamily>
 
+        <SolidColorBrush x:Key="Whiteish" Color="#F6F6F6"/>
+
+        <Viewbox x:Key="ExitSprite" Stretch="Uniform">
+            <Canvas Name="svg64" Width="296" Height="415">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <!--Unknown tag: sodipodi:namedview-->
+                <Canvas Name="g62">
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="1 0 0 1 -103 -35"/>
+                    </Canvas.RenderTransform>
+                    <Path Name="path60" Fill="{StaticResource Whiteish}" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M347.15 35L347.15 291.986L352.07 291.986C366.124 291.986 377.368 300.419 382.287 312.717L393.531 342.583L347.15 342.583L347.15 397.747L398.801 449.398L237.173 449.398L197.117 409.342C189.387 401.964 178.494 397.396 167.602 397.396L135.979 397.396L188.33 449.398L155.656 449.398L103 397.094L103 211.523L135.979 211.523C146.169 211.523 155.656 206.604 161.277 199.225L183.765 171.818L207.306 230.848L131.411 387.909L161.277 387.909C170.413 387.909 178.143 382.99 181.657 375.611L243.497 247.362L251.227 319.744C251.579 328.177 258.957 334.501 267.39 334.501L382.639 334.501L375.26 315.527C371.043 306.392 362.611 299.716 352.07 299.716L285.31 299.716L277.58 217.145L251.579 152.493L285.31 152.493L306.041 192.549C308.851 197.468 313.068 200.279 319.392 200.279C327.474 200.279 334.15 193.252 334.15 185.522C334.15 182.711 333.447 180.603 332.393 178.846L309.203 134.925C303.581 124.033 292.689 117.357 280.391 117.357L202.387 117.357C190.089 117.357 178.846 122.978 171.467 131.411L134.925 177.089L103 177.089L103 35L347.15 35ZM182.812 51.663C200.405 51.663 214.687 65.946 214.687 83.538C214.687 101.131 200.405 115.413 182.812 115.413C165.22 115.413 150.937 101.131 150.937 83.538C150.937 65.946 165.22 51.663 182.812 51.663Z" FillRule="EvenOdd"/>
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+
+        <Viewbox x:Key="StarSprite" Stretch="Uniform">
+            <Canvas Name="svg27" Width="503" Height="478">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <!--Unknown tag: sodipodi:namedview-->
+                <Canvas Name="g25">
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="1 0 0 1 -1240.16 -2731.04"/>
+                    </Canvas.RenderTransform>
+                    <Canvas Name="g23">
+                        <Canvas.RenderTransform>
+                            <MatrixTransform Matrix="0.92572 0 0 0.92572 1075.95 2400.83"/>
+                        </Canvas.RenderTransform>
+                        <Path Name="path21" Fill="Orange" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                            <Path.Data>
+                                <PathGeometry Figures="M448.702 356.704L537.74 519.433L720.019 553.827L592.769 688.793L616.385 872.779L448.702 793.464L281.019 872.779L304.636 688.793L177.386 553.827L359.664 519.433L448.702 356.704Z" FillRule="EvenOdd"/>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontFamily" Value="{StaticResource ComicNeue-Regular}"/>
             <Setter Property="FontSize" Value="24"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
-        <Style TargetType="{x:Type TextBlock}" x:Key="bigText">
-            <Setter Property="FontSize" Value="32"/>
-            <Setter Property="FontFamily" Value="{StaticResource ComicNeue-Bold}"/>
+        <Style TargetType="{x:Type TextBlock}" x:Key="BigText">
+            <Setter Property="FontSize" Value="96"/>
+            <Setter Property="Margin" Value="8"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource ComicNeue-Regular}"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="IconBtnText">
+            <Setter Property="Margin" Value="4 0 0 0"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="96"/>
+            <Setter Property="FontFamily" Value="{StaticResource ComicNeue-Regular}"/>
+        </Style>
+
+        <Style TargetType="Border">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="CornerRadius" Value="3"/>
         </Style>
 
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontFamily" Value="{StaticResource ComicNeue-Regular}"/>
-            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="{StaticResource Whiteish}"/>
+            <Setter Property="Background" Value="SeaGreen"/>
+            <Setter Property="Padding" Value="8 4"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="1" BorderBrush="Black" CornerRadius="3" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF37A568"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="MediumSeaGreen"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" x:Key="ListBtn">
+            <Setter Property="Margin" Value="0 2"/>
+        </Style>
+
+        <Style TargetType="{x:Type Rectangle}" x:Key="Underscore">
+            <Setter Property="Fill" Value="Black"/>
+            <Setter Property="Height" Value="5"/>
         </Style>
     </Window.Resources>
 
     <Grid>
-        <Grid Name="WelcomeScreen" Background="LightBlue">
+        <Grid Name="WelcomeScreen" Background="{StaticResource Whiteish}">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Welcome!" Style="{StaticResource bigText}"/>
+                <TextBlock Text="Welcome!" Style="{StaticResource BigText}"/>
                 <Button Name="WelcomeBtn" Content="Ok" Click="WelcomeBtn_OnClick"/>
             </StackPanel>
         </Grid>
 
-        <Grid Name="KsMenu" Background="White" Visibility="Collapsed">
+        <Grid Name="KsMenu" Background="{StaticResource Whiteish}" Visibility="Collapsed">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Select key stage."/>
-                <Button Name="Ks2Btn" Content="KS2" Click="Ks2Btn_OnClick"/>
-                <Button Name="Ks3Btn" Content="KS3" Click="Ks3_OnClick" IsEnabled="False"/>
+                <Button Name="Ks2Btn" Content="KS2" Style="{StaticResource ListBtn}" Click="Ks2Btn_OnClick"/>
+                <Button Name="Ks3Btn" Content="KS3" Click="Ks3_OnClick" Style="{StaticResource ListBtn}" IsEnabled="False"/>
             </StackPanel>
         </Grid>
 
-        <Grid Name="QuizMenu" Background="Pink" Visibility="Collapsed">
+        <Grid Name="QuizMenu" Background="{StaticResource Whiteish}" Visibility="Collapsed">
 
             <Grid.RowDefinitions>
                 <RowDefinition Name="NavButtons" Height="Auto"/>
@@ -52,42 +156,74 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" Margin="8">
                 <Button Name="QuizBackBtn" Content="&lt; Back" Click="QuizBackBtn_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Button Name="MinigamesBtn"  Content="Minigames :D" IsEnabled="False" HorizontalAlignment="Right" VerticalAlignment="Top"/>
             </Grid>
 
-            <TextBlock Grid.Row="1" Text="Select quiz to play."/>
+            <TextBlock Grid.Row="1" Text="Select quiz to play." Margin="8 8 8 0" HorizontalAlignment="Left"/>
 
             <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
-                <StackPanel Name="QuizSelector">
+                <StackPanel Name="QuizSelector" Margin="8">
                     <Button Name="ExampleQuizBtn" Content="Example quiz" Click="ExampleQuizBtn_OnClick"/> <!-- Example quiz button-->
                 </StackPanel>
             </ScrollViewer>
 
         </Grid>
 
-        <Grid Name="QuizInstance" Background="LightGray" Visibility="Collapsed">
-            <StackPanel VerticalAlignment="Top">
-                <Grid>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="ExitQuizBtn" Content="Exit" Click="ExitQuizBtn_OnClick" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                        <TextBlock Text="Example Game" Background="MediumPurple" Margin="16 0 0 0"/>
-                    </StackPanel>
-                    <TextBlock Name="ScoreTxt" HorizontalAlignment="Right" VerticalAlignment="Top">
-                        Score: <Bold>0</Bold>
-                    </TextBlock>
-                </Grid>
+        <Grid Name="QuizInstance" Background="#F8FAB1" Visibility="Collapsed">
 
-                <TextBlock Name="QuestionTxt" TextWrapping="Wrap" Margin="0 32 0 0">
-                    <Bold>What is 6+5.</Bold> Answer me.
-                </TextBlock>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-                <TextBox Width="128" HorizontalAlignment="Left"/>
+            <Grid Grid.Row="0" Margin="8">
+                <StackPanel Orientation="Horizontal" >
+                    <Button Click="ExitQuizBtn_OnClick" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="{StaticResource ExitSprite}" Width="18" Margin="0 0 "/>
+                            <TextBlock Style="{StaticResource IconBtnText}" Text="Exit" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-            </StackPanel>
+                    <Border BorderBrush="Transparent" Margin="4 0 0 0" Background="LightGreen">
+                        <TextBlock Text="Mental Maths" Padding="8 0"/>
+                    </Border>
+                </StackPanel>
 
-            <Button Content="Check!" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ContentPresenter Content="{StaticResource StarSprite}" Width="18" Margin="0 0"/>
+
+                    <TextBlock Style="{StaticResource IconBtnText}" Text="Score: "/>
+                    <TextBlock Name="ScoreNo" Text="0"/>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Name="MentalMathsGrid" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="6" Name="MentalMathsX"  Style="{StaticResource BigText}"/>
+                    <TextBlock Text="+" Name="MentalMathsOperand" Style="{StaticResource BigText}"/>
+                    <TextBlock Text="5" Name="MentalMathsY" Style="{StaticResource BigText}"/>
+                    <TextBlock Text="=" Style="{StaticResource BigText}"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBox Width="128" Height="Auto" Name="MentalMathsAnsTb"/>
+                        <Rectangle Grid.Row="1" Style="{StaticResource Underscore}"/>
+                    </Grid>
+
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="8">
+                <Button Name="CheckAnsBtn" Content="Check!" HorizontalAlignment="Right"/>
+            </Grid>
 
         </Grid>
     </Grid>
