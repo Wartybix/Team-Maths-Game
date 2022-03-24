@@ -189,7 +189,7 @@
                     </Button>
 
                     <Border BorderBrush="Transparent" Margin="4 0 0 0" Background="LightGreen">
-                        <TextBlock Text="Mental Maths" Padding="8 0"/>
+                        <TextBlock Name="QuizNameTxt" Text="Mental Maths" Padding="8 0"/>
                     </Border>
                 </StackPanel>
 
