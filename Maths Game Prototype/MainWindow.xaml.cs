@@ -72,8 +72,8 @@ namespace Maths_Game_Prototype
         {
             TransitionTo(QuizInstance);
 
-            _currentQuiz = new MentalMathsQuiz();
-            _currentQuiz.NewGame();
+            //_currentQuiz = new MentalMathsQuiz();
+            //_currentQuiz.NewGame();
         }
 
         #endregion

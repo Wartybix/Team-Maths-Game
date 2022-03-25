@@ -188,7 +188,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Border BorderBrush="Transparent" Margin="4 0 0 0" Background="LightGreen">
+                    <Border BorderBrush="Transparent" Margin="4 0 0 0" Background="#99E88C">
                         <TextBlock Name="QuizNameTxt" Text="Mental Maths" Padding="8 0"/>
                     </Border>
                 </StackPanel>
@@ -205,7 +205,7 @@
             <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Name="MentalMathsGrid" Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Text="6" Name="MentalMathsX"  Style="{StaticResource BigText}"/>
-                    <TextBlock Text="+" Name="MentalMathsOperand" Style="{StaticResource BigText}"/>
+                    <TextBlock Text="+" Name="MentalMathsOperand" Style="{StaticResource BigText}" Foreground="#FF8A00"/>
                     <TextBlock Text="5" Name="MentalMathsY" Style="{StaticResource BigText}"/>
                     <TextBlock Text="=" Style="{StaticResource BigText}"/>
                     <Grid>
