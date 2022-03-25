@@ -184,7 +184,7 @@
                     <Button Click="ExitQuizBtn_OnClick" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
                             <ContentPresenter Content="{StaticResource ExitSprite}" Width="18" Margin="0 0 "/>
-                            <TextBlock Style="{StaticResource IconBtnText}" Text="Exit" VerticalAlignment="Center"/>
+                            <TextBlock Style="{StaticResource IconBtnText}" Text="Exit"/>
                         </StackPanel>
                     </Button>
 
