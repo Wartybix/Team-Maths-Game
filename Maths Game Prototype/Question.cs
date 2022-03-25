@@ -9,8 +9,8 @@ namespace Maths_Game_Prototype
 {
     internal class Question
     {
-        public Dictionary<string, dynamic> QuestionVariables { get; set; } //Variables used in question (e.g. x + y = _)
-        public Dictionary<string, string> ExpectedAnswer { get; set; } //The expected answer(s) of the question
+        public Dictionary<string, dynamic> QuestionVariables { get; } //Variables used in question (e.g. x + y = _)
+        public Dictionary<string, string> ExpectedAnswer { get; } //The expected answer(s) of the question
 
         /// <summary>
         /// Constructor
