@@ -10,10 +10,11 @@ namespace Maths_Game_Prototype
 {
     internal abstract class Quiz
     {
-        public string QuizName { get; set; }
-        public Question[] Questions = new Question[5];
-        protected Random Randoms;
-        protected MainWindow MainWindow;
+        public string QuizName { get; set; } //Name of the quiz
+        public Question[] Questions = new Question[5]; //Array of questions associated with the quiz
+        private int QuestionNumber { get; set; } //The index of the current question.
+        protected Random Randoms; //A variable that produces random values for use in child classes.
+        protected MainWindow MainWindow; //References the MainWindow.
 
 
         /// <summary>
@@ -23,10 +24,31 @@ namespace Maths_Game_Prototype
         /// </summary>
         public virtual void NewGame()
         {
+            QuestionNumber = 0;
+
             MainWindow = (MainWindow) Application.Current.MainWindow;
             Randoms = new Random();
 
             if (MainWindow != null) MainWindow.QuizNameTxt.Text = QuizName;
+        }
+
+        /// <summary>
+        /// Returns whether the current question is the last index in the questions array.
+        /// </summary>
+        /// <returns>True if last question, False if not.</returns>
+        public bool EndOfQuiz()
+        {
+            return QuestionNumber == Questions.Length - 1;
+        }
+
+        /// <summary>
+        /// Increments the question number by 1 and displays a new question.
+        /// </summary>
+        public void NextQuestion()
+        {
+            QuestionNumber++;
+
+            DisplayQuestion();
         }
 
         /// <summary>
