@@ -13,7 +13,7 @@ namespace Maths_Game_Prototype
         #region Variable initialisation
 
         private Grid _currentlyOpenMenu; //Holds the menu currently visible
-
+        private Quiz _currentQuiz; //Holds the quiz currently in progress.
 
 
         #endregion
@@ -71,6 +71,9 @@ namespace Maths_Game_Prototype
         private void ExampleQuizBtn_OnClick(object sender, RoutedEventArgs e)
         {
             TransitionTo(QuizInstance);
+
+            _currentQuiz = new MentalMathsQuiz();
+            _currentQuiz.NewGame();
         }
 
         #endregion
