@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Maths_Game_Prototype
 {
     internal abstract class Quiz
     {
         public string QuizName { get; set; } //Name of the quiz
+        protected Operator OperatorCategory { get; set; }
         public Question[] Questions = new Question[5]; //Array of questions associated with the quiz
-        private int QuestionNumber { get; set; } //The index of the current question.
+        protected int QuestionNumber { get; set; } //The index of the current question.
         protected Random Randoms; //A variable that produces random values for use in child classes.
         protected MainWindow MainWindow; //References the MainWindow.
 
@@ -29,7 +32,17 @@ namespace Maths_Game_Prototype
             MainWindow = (MainWindow) Application.Current.MainWindow;
             Randoms = new Random();
 
-            if (MainWindow != null) MainWindow.QuizNameTxt.Text = QuizName;
+            if (MainWindow == null) return;
+
+            MainWindow.QuizNameTxt.Text = QuizName;
+            MainWindow.TitleColour.Background = OperatorCategory.LightColour;
+        }
+
+        protected void ShowQuizLayout(StackPanel layout)
+        {
+            if (MainWindow.CurrentQuizLayout != null) MainWindow.CurrentQuizLayout.Visibility = Visibility.Collapsed;
+            MainWindow.CurrentQuizLayout = layout;
+            layout.Visibility = Visibility.Visible;
         }
 
         /// <summary>

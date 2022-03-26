@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Maths_Game_Prototype
 {
@@ -13,27 +14,50 @@ namespace Maths_Game_Prototype
         public MentalMathsQuiz()
         {
             QuizName = "Mental Maths";
+            OperatorCategory = Operators.Generic;
         }
 
         public override void NewGame()
         {
             base.NewGame();
 
-            foreach (Question question in Questions)
+            for (var index = 0; index < Questions.Length; index++)
             {
-                int x = Randoms.Next(0, 10);
-                int y = Randoms.Next(0, 10);
+                var questionVariables = new Dictionary<string, dynamic>();
+                var expectedAnswer = new Dictionary<string, string>();
 
-                question.QuestionVariables.Add("x", x);
-                question.QuestionVariables.Add("y", y);
+                var x = Randoms.Next(0, 10);
+                var y = Randoms.Next(0, 10);
 
-                question.ExpectedAnswer.Add("ans", (x + y).ToString());
+                questionVariables.Add("x", x);
+                questionVariables.Add("y", y);
+
+                var isAddition = Randoms.NextDouble() >= 0.5;
+
+                var chosenOperator = isAddition ? Operators.Plus : Operators.Minus;
+                var result = isAddition ? x + y : x - y;
+
+                questionVariables.Add("operator", chosenOperator);
+                expectedAnswer.Add("ans", result.ToString());
+
+                Questions[index] = new Question(questionVariables, expectedAnswer);
             }
+
+            ShowQuizLayout(MainWindow.MentalMathsGrid);
+            DisplayQuestion();
         }
 
         public override void DisplayQuestion()
         {
+            var currentQuestion = Questions[QuestionNumber];
 
+            if (currentQuestion == null) return;
+
+            MainWindow.MentalMathsAnsTb.Text = string.Empty;
+            MainWindow.MentalMathsX.Text = currentQuestion.QuestionVariables["x"].ToString();
+            MainWindow.MentalMathsOperand.Text = currentQuestion.QuestionVariables["operator"].Symbol.ToString();
+            MainWindow.MentalMathsOperand.Foreground = currentQuestion.QuestionVariables["operator"].Colour;
+            MainWindow.MentalMathsY.Text = currentQuestion.QuestionVariables["y"].ToString();
         }
     }
 }

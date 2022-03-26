@@ -14,6 +14,7 @@ namespace Maths_Game_Prototype
 
         private Grid _currentlyOpenMenu; //Holds the menu currently visible
         private Quiz _currentQuiz; //Holds the quiz currently in progress.
+        public StackPanel CurrentQuizLayout; //Holds the layout of the current quiz.
 
 
         #endregion
@@ -72,8 +73,8 @@ namespace Maths_Game_Prototype
         {
             TransitionTo(QuizInstance);
 
-            //_currentQuiz = new MentalMathsQuiz();
-            //_currentQuiz.NewGame();
+            _currentQuiz = new MentalMathsQuiz();
+            _currentQuiz.NewGame();
         }
 
         #endregion
