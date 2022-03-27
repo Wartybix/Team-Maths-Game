@@ -34,6 +34,9 @@ namespace Maths_Game_Prototype
 
             if (MainWindow == null) return;
 
+            MainWindow.AnswerRevealArea.Visibility = Visibility.Collapsed;
+            MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
+
             MainWindow.QuizNameTxt.Text = QuizName;
             MainWindow.TitleColour.Background = OperatorCategory.LightColour;
         }
@@ -67,6 +70,28 @@ namespace Maths_Game_Prototype
         /// <summary>
         /// Sets up the UI to display the current question.
         /// </summary>
-        public abstract void DisplayQuestion();
+        protected abstract void DisplayQuestion();
+
+        /// <summary>
+        /// Checks user input against the current question's expected answer.
+        /// </summary>
+        public virtual void CheckAnswer()
+        {
+            MainWindow.CheckAnsBtn.Visibility = Visibility.Collapsed;
+            MainWindow.AnswerRevealArea.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Displays a message when the user answers a question correctly.
+        /// </summary>
+        public void RightAnswer()
+        {
+            MainWindow.AnswerRevealText.Text = "Yes. That is correct.";
+        }
+
+        public void WrongAnswer(string expectedAnswer)
+        {
+            MainWindow.AnswerRevealText.Text = $"No. The answer is {expectedAnswer}.";
+        }
     }
 }

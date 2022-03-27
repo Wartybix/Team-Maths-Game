@@ -66,10 +66,13 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
-        <Style TargetType="{x:Type TextBlock}" x:Key="BigText">
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="BigText">
             <Setter Property="FontSize" Value="96"/>
             <Setter Property="Margin" Value="8"/>
-            <Setter Property="FontFamily" Value="{StaticResource ComicNeue-Regular}"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BigText}" x:Key="BigOperator">
+            <Setter Property="FontSize" Value="128"/>
         </Style>
 
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="IconBtnText">
@@ -189,7 +192,7 @@
                     </Button>
 
                     <Border Name="TitleColour" BorderBrush="Transparent" Margin="4 0 0 0" Background="#99E88C">
-                        <TextBlock Name="QuizNameTxt" Text="Mental Maths" Padding="8 0"/>
+                        <TextBlock Name="QuizNameTxt" Padding="8 0"/>
                     </Border>
                 </StackPanel>
 
@@ -204,9 +207,9 @@
 
             <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Name="MentalMathsGrid" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Text="6" VerticalAlignment="Center" Name="MentalMathsX"  Style="{StaticResource BigText}"/>
-                    <TextBlock Text="+" VerticalAlignment="Center" FontSize="128" Name="MentalMathsOperand" Style="{StaticResource BigText}" Foreground="#FF8A00"/>
-                    <TextBlock Text="5" VerticalAlignment="Center" Name="MentalMathsY" Style="{StaticResource BigText}"/>
+                    <TextBlock Name="MentalMathsX"  Style="{StaticResource BigText}"/>
+                    <TextBlock Name="MentalMathsOperator" Style="{StaticResource BigOperator}" Foreground="#FF8A00"/>
+                    <TextBlock Name="MentalMathsY" Style="{StaticResource BigText}"/>
                     <TextBlock Text="=" Style="{StaticResource BigText}"/>
                     <Grid VerticalAlignment="Center">
                         <Grid.RowDefinitions>
@@ -222,7 +225,20 @@
             </Grid>
 
             <Grid Grid.Row="2" Margin="8">
-                <Button Name="CheckAnsBtn" Content="Check!" HorizontalAlignment="Right"/>
+                <Button Name="CheckAnsBtn" Click="CheckAnsBtn_OnClick" Content="Check!" HorizontalAlignment="Right"/>
+
+                <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Name="AnswerRevealText"/>
+                        <Button Grid.Column="1" Content="Next >" Click="NextQBtn_OnClick"/>
+                    </Grid>
+                </Border>
+
             </Grid>
 
         </Grid>

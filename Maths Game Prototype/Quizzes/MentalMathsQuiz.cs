@@ -47,7 +47,7 @@ namespace Maths_Game_Prototype
             DisplayQuestion();
         }
 
-        public override void DisplayQuestion()
+        protected override void DisplayQuestion()
         {
             var currentQuestion = Questions[QuestionNumber];
 
@@ -55,9 +55,25 @@ namespace Maths_Game_Prototype
 
             MainWindow.MentalMathsAnsTb.Text = string.Empty;
             MainWindow.MentalMathsX.Text = currentQuestion.QuestionVariables["x"].ToString();
-            MainWindow.MentalMathsOperand.Text = currentQuestion.QuestionVariables["operator"].Symbol.ToString();
-            MainWindow.MentalMathsOperand.Foreground = currentQuestion.QuestionVariables["operator"].Colour;
+            MainWindow.MentalMathsOperator.Text = currentQuestion.QuestionVariables["operator"].Symbol.ToString();
+            MainWindow.MentalMathsOperator.Foreground = currentQuestion.QuestionVariables["operator"].Colour;
             MainWindow.MentalMathsY.Text = currentQuestion.QuestionVariables["y"].ToString();
+        }
+
+        public override void CheckAnswer()
+        {
+            base.CheckAnswer();
+
+            var currentQuestion = Questions[QuestionNumber];
+
+            if (MainWindow.MentalMathsAnsTb.Text == currentQuestion.ExpectedAnswer["ans"])
+            {
+                RightAnswer();
+            }
+            else
+            {
+                WrongAnswer(currentQuestion.ExpectedAnswer["ans"]);
+            }
         }
     }
 }

@@ -80,5 +80,14 @@ namespace Maths_Game_Prototype
         #endregion
 
 
+        private void NextQBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void CheckAnsBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            _currentQuiz.CheckAnswer();
+        }
     }
 }
