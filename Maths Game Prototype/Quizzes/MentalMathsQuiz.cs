@@ -49,6 +49,8 @@ namespace Maths_Game_Prototype
 
         protected override void DisplayQuestion()
         {
+            base.DisplayQuestion();
+
             var currentQuestion = Questions[QuestionNumber];
 
             if (currentQuestion == null) return;

@@ -34,9 +34,6 @@ namespace Maths_Game_Prototype
 
             if (MainWindow == null) return;
 
-            MainWindow.AnswerRevealArea.Visibility = Visibility.Collapsed;
-            MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
-
             MainWindow.QuizNameTxt.Text = QuizName;
             MainWindow.TitleColour.Background = OperatorCategory.LightColour;
         }
@@ -70,7 +67,11 @@ namespace Maths_Game_Prototype
         /// <summary>
         /// Sets up the UI to display the current question.
         /// </summary>
-        protected abstract void DisplayQuestion();
+        protected virtual void DisplayQuestion()
+        {
+            MainWindow.AnswerRevealArea.Visibility = Visibility.Collapsed;
+            MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
+        }
 
         /// <summary>
         /// Checks user input against the current question's expected answer.

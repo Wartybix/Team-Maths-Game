@@ -82,7 +82,7 @@ namespace Maths_Game_Prototype
 
         private void NextQBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            if (!_currentQuiz.EndOfQuiz()) _currentQuiz.NextQuestion();
         }
 
         private void CheckAnsBtn_OnClick(object sender, RoutedEventArgs e)
