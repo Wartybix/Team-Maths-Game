@@ -10,11 +10,11 @@ namespace Maths_Game_Prototype
 {
     internal class Operator
     {
-        public char Symbol { get; } //Symbol of the operator (e.g. '+', '-')
+        public string Symbol { get; } //Symbol of the operator (e.g. '+', '-')
         public SolidColorBrush Colour { get; } //Colour of the symbol
         public SolidColorBrush LightColour { get; } //Colour used in the quiz's title bar depending on its operator category
 
-        public Operator(char symbol, SolidColorBrush colour, SolidColorBrush lightColour)
+        public Operator(string symbol, SolidColorBrush colour, SolidColorBrush lightColour)
         {
             Symbol = symbol;
             Colour = colour;

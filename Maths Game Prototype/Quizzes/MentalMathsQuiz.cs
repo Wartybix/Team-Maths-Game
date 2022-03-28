@@ -57,7 +57,7 @@ namespace Maths_Game_Prototype
 
             MainWindow.MentalMathsAnsTb.Text = string.Empty;
             MainWindow.MentalMathsX.Text = currentQuestion.QuestionVariables["x"].ToString();
-            MainWindow.MentalMathsOperator.Text = currentQuestion.QuestionVariables["operator"].Symbol.ToString();
+            MainWindow.MentalMathsOperator.Text = currentQuestion.QuestionVariables["operator"].Symbol;
             MainWindow.MentalMathsOperator.Foreground = currentQuestion.QuestionVariables["operator"].Colour;
             MainWindow.MentalMathsY.Text = currentQuestion.QuestionVariables["y"].ToString();
         }
