@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Media;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
@@ -19,6 +20,7 @@ namespace Maths_Game_Prototype
         private Quiz _currentQuiz; //Holds the quiz currently in progress.
         public StackPanel CurrentQuizLayout; //Holds the layout of the current quiz.
         public SoundPlayer SoundPlayer = new SoundPlayer(); //Plays a .wav file asynchronously while the rest of the program executes.
+        public int Score = 0; //Holds the user's current score in a given quiz.
 
         #endregion
 
@@ -42,6 +44,28 @@ namespace Maths_Game_Prototype
             destinationMenu.Visibility = Visibility.Visible;
 
             _currentlyOpenMenu = destinationMenu;
+        }
+
+        #endregion
+
+        #region Quiz Logic
+
+        /// <summary>
+        /// Sets score to zero and updates score textblock accordingly.
+        /// </summary>
+        public void ResetScore()
+        {
+            Score = 0;
+            ScoreNo.Text = Score.ToString();
+        }
+
+        /// <summary>
+        /// Increments score by 1 and updates score textblock accordingly.
+        /// </summary>
+        public void IncrementScore()
+        {
+            Score++;
+            ScoreNo.Text = Score.ToString();
         }
 
         #endregion

@@ -36,6 +36,7 @@ namespace Maths_Game_Prototype
 
             MainWindow.QuizNameTxt.Text = QuizName;
             MainWindow.TitleColour.Background = OperatorCategory.LightColour;
+            MainWindow.ResetScore();
         }
 
         protected void ShowQuizLayout(StackPanel layout)
@@ -89,6 +90,7 @@ namespace Maths_Game_Prototype
         {
             MainWindow.AnswerRevealText.Text = "Yes. That is correct.";
             MainWindow.PlaySound(Sounds.applause);
+            MainWindow.IncrementScore();
         }
 
         public void WrongAnswer(string expectedAnswer)
