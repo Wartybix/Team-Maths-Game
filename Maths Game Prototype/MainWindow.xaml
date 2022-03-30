@@ -195,7 +195,7 @@
 
         </Grid>
 
-        <Grid Name="QuizInstance" Background="#F8FAB1" Visibility="Collapsed">
+        <Grid Name="QuizInstance" Background="#F8FAB1" Visibility="Collapsed" KeyDown="QuizInstance_OnKeyDown">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

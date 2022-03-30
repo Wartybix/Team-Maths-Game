@@ -1,10 +1,16 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Media;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Markup;
+using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
+using KeyEventHandler = System.Windows.Input.KeyEventHandler;
 
 namespace Maths_Game_Prototype
 {
@@ -29,6 +35,8 @@ namespace Maths_Game_Prototype
             InitializeComponent();
 
             _currentlyOpenMenu = WelcomeScreen;
+
+            //QuizInstance.KeyDown += new KeyEventHandler(Enter_KeyDown);
         }
 
         #region Menu logic
@@ -66,6 +74,14 @@ namespace Maths_Game_Prototype
         {
             Score++;
             ScoreNo.Text = Score.ToString();
+        }
+
+        private void NextQuestion()
+        {
+            if (!_currentQuiz.EndOfQuiz())
+                _currentQuiz.NextQuestion();
+            else
+                ShowResults();
         }
 
         public void ShowResults()
@@ -127,10 +143,7 @@ namespace Maths_Game_Prototype
 
         private void NextQBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!_currentQuiz.EndOfQuiz())
-                _currentQuiz.NextQuestion();
-            else
-                ShowResults();
+            NextQuestion();
         }
 
         private void CheckAnsBtn_OnClick(object sender, RoutedEventArgs e)
@@ -142,6 +155,20 @@ namespace Maths_Game_Prototype
             TransitionTo(QuizInstance);
 
             _currentQuiz.NewGame();
+        }
+
+        #endregion
+
+        #region KeyPress
+
+        private void QuizInstance_OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter) return;
+
+            if (AnswerRevealArea.Visibility == Visibility.Visible)
+                NextQuestion();
+            else
+                _currentQuiz.CheckAnswer();
         }
 
         #endregion
