@@ -88,15 +88,13 @@ namespace Maths_Game_Prototype
         public void RightAnswer()
         {
             MainWindow.AnswerRevealText.Text = "Yes. That is correct.";
-            MainWindow.SoundPlayer.Stream = Sounds.applause;
-            MainWindow.SoundPlayer.Play();
+            MainWindow.PlaySound(Sounds.applause);
         }
 
         public void WrongAnswer(string expectedAnswer)
         {
             MainWindow.AnswerRevealText.Text = $"No. The answer is {expectedAnswer}.";
-            MainWindow.SoundPlayer.Stream = Sounds.disappointment;
-            MainWindow.SoundPlayer.Play();
+            MainWindow.PlaySound(Sounds.disappointment);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Media;
+﻿using System.IO;
+using System.Media;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,6 +42,16 @@ namespace Maths_Game_Prototype
             destinationMenu.Visibility = Visibility.Visible;
 
             _currentlyOpenMenu = destinationMenu;
+        }
+
+        #endregion
+
+        #region Sound
+
+        public void PlaySound(Stream audioStream)
+        {
+            SoundPlayer.Stream = audioStream;
+            SoundPlayer.Play();
         }
 
         #endregion
