@@ -79,9 +79,6 @@ namespace Maths_Game_Prototype
             _currentQuiz.NewGame();
         }
 
-        #endregion
-
-
         private void NextQBtn_OnClick(object sender, RoutedEventArgs e)
         {
             if (!_currentQuiz.EndOfQuiz()) _currentQuiz.NextQuestion();
@@ -91,5 +88,7 @@ namespace Maths_Game_Prototype
         {
             _currentQuiz.CheckAnswer();
         }
+
+        #endregion
     }
 }
