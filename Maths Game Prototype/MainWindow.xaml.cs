@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Media;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 
@@ -15,7 +17,7 @@ namespace Maths_Game_Prototype
         private Grid _currentlyOpenMenu; //Holds the menu currently visible
         private Quiz _currentQuiz; //Holds the quiz currently in progress.
         public StackPanel CurrentQuizLayout; //Holds the layout of the current quiz.
-
+        public SoundPlayer SoundPlayer = new SoundPlayer(); //Plays a .wav file asynchronously while the rest of the program executes.
 
         #endregion
 
