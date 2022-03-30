@@ -14,13 +14,31 @@
 
         <SolidColorBrush x:Key="Whiteish" Color="#F6F6F6"/>
 
-        <Viewbox x:Key="ExitSprite" Stretch="Uniform">
+        <Viewbox x:Key="ReloadSprite" Stretch="Uniform">
+            <Canvas Name="svg6" Width="16.025" Height="16.025">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Canvas Name="g44">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-2" Y="-2"/>
+                    </Canvas.RenderTransform>
+                    <Path Name="path24" Fill="{StaticResource Whiteish}" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M 2 2 V 9 H 9 L 5.8 5.8 C 6.2 5.4 6.6 5.1 7.1 4.8 10 3.2 13.6 4.2 15.3 7.1 17 10 15.9 13.6 13 15.3 10.1 17 6.4 15.9 4.8 13 H 2.6 c 0.4 1 1 1.9 1.8 2.7 3.1 3.1 8.2 3.1 11.3 0 3.1 -3.1 3.1 -8.2 0 -11.3 C 12.6 1.3 7.5 1.3 4.4 4.4 Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+
+        <Viewbox x:Key="ExitSprite" x:Shared="False" Stretch="Uniform">
             <Canvas Name="svg64" Width="296" Height="415">
                 <Canvas.RenderTransform>
                     <TranslateTransform X="0" Y="0"/>
                 </Canvas.RenderTransform>
                 <Canvas.Resources/>
-                <!--Unknown tag: sodipodi:namedview-->
                 <Canvas Name="g62">
                     <Canvas.RenderTransform>
                         <MatrixTransform Matrix="1 0 0 1 -103 -35"/>
@@ -34,13 +52,12 @@
             </Canvas>
         </Viewbox>
 
-        <Viewbox x:Key="StarSprite" Stretch="Uniform">
+        <Viewbox x:Key="StarSprite" x:Shared="False" Stretch="Uniform">
             <Canvas Name="svg27" Width="503" Height="478">
                 <Canvas.RenderTransform>
                     <TranslateTransform X="0" Y="0"/>
                 </Canvas.RenderTransform>
                 <Canvas.Resources/>
-                <!--Unknown tag: sodipodi:namedview-->
                 <Canvas Name="g25">
                     <Canvas.RenderTransform>
                         <MatrixTransform Matrix="1 0 0 1 -1240.16 -2731.04"/>
@@ -66,6 +83,10 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="MediumText">
+            <Setter Property="FontSize" Value="48"/>
+        </Style>
+
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="BigText">
             <Setter Property="FontSize" Value="96"/>
             <Setter Property="Margin" Value="8"/>
@@ -76,7 +97,7 @@
         </Style>
 
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="IconBtnText">
-            <Setter Property="Margin" Value="4 0 0 0"></Setter>
+            <Setter Property="Margin" Value="6 0 0 0"></Setter>
         </Style>
 
         <Style TargetType="{x:Type TextBox}">
@@ -138,7 +159,7 @@
     <Grid>
         <Grid Name="WelcomeScreen" Background="{StaticResource Whiteish}">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Welcome!" Style="{StaticResource BigText}"/>
+                <TextBlock Text="Welcome!" Style="{StaticResource MediumText}"/>
                 <Button Name="WelcomeBtn" Content="Ok" Click="WelcomeBtn_OnClick"/>
             </StackPanel>
         </Grid>
@@ -225,9 +246,9 @@
             </Grid>
 
             <Grid Grid.Row="2" Margin="8">
-                <Button Name="CheckAnsBtn" Click="CheckAnsBtn_OnClick" Content="Check!" HorizontalAlignment="Right"/>
+                <Button Name="CheckAnsBtn" Click="CheckAnsBtn_OnClick" Content="Check!" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Collapsed">
+                <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Hidden">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -235,12 +256,40 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Name="AnswerRevealText"/>
-                        <Button Grid.Column="1" Content="Next >" Click="NextQBtn_OnClick"/>
+                        <Button Grid.Column="1" Name="NextQBtn" Click="NextQBtn_OnClick"/>
                     </Grid>
                 </Border>
 
             </Grid>
 
+        </Grid>
+
+        <Grid Name="ResultsPage" Background="{StaticResource Whiteish}" Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Name="QuizNameResultsTxt" Style="{StaticResource MediumText}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="You scored:"/>
+                    <ContentPresenter Content="{StaticResource StarSprite}" Width="18" Margin="8 0 4 0"/>
+                    <TextBlock Name="ResultsUserScoreTxt"/>
+                    <TextBlock Text="/"/>
+                    <TextBlock Name="ResultsMaxScoreTxt"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 16 0 0">
+                    <Button Click="Replay_OnClick" Margin="0 0 2 0">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="{StaticResource ReloadSprite}" Width="18" Margin="0 0 "/>
+                            <TextBlock Style="{StaticResource IconBtnText}" Text="Play Again"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="ExitQuizBtn_OnClick" Margin="2 0 0 0">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="{StaticResource ExitSprite}" Width="18" Margin="0 0 "/>
+                            <TextBlock Style="{StaticResource IconBtnText}" Text="Exit"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

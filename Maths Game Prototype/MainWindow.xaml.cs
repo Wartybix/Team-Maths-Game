@@ -68,6 +68,17 @@ namespace Maths_Game_Prototype
             ScoreNo.Text = Score.ToString();
         }
 
+        public void ShowResults()
+        {
+            TransitionTo(ResultsPage);
+
+            QuizNameResultsTxt.Text = _currentQuiz.QuizName;
+            ResultsUserScoreTxt.Text = Score.ToString();
+            ResultsMaxScoreTxt.Text = _currentQuiz.Questions.Length.ToString();
+
+            PlaySound(Score == _currentQuiz.Questions.Length ? Sounds.thrilled : Sounds.conclusion);
+        }
+
         #endregion
 
         #region Sound
@@ -116,12 +127,21 @@ namespace Maths_Game_Prototype
 
         private void NextQBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!_currentQuiz.EndOfQuiz()) _currentQuiz.NextQuestion();
+            if (!_currentQuiz.EndOfQuiz())
+                _currentQuiz.NextQuestion();
+            else
+                ShowResults();
         }
 
         private void CheckAnsBtn_OnClick(object sender, RoutedEventArgs e)
         {
             _currentQuiz.CheckAnswer();
+        }
+        private void Replay_OnClick(object sender, RoutedEventArgs e)
+        {
+            TransitionTo(QuizInstance);
+
+            _currentQuiz.NewGame();
         }
 
         #endregion

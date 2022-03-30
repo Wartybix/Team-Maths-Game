@@ -70,7 +70,7 @@ namespace Maths_Game_Prototype
         /// </summary>
         protected virtual void DisplayQuestion()
         {
-            MainWindow.AnswerRevealArea.Visibility = Visibility.Collapsed;
+            MainWindow.AnswerRevealArea.Visibility = Visibility.Hidden;
             MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
         }
 
@@ -81,6 +81,9 @@ namespace Maths_Game_Prototype
         {
             MainWindow.CheckAnsBtn.Visibility = Visibility.Collapsed;
             MainWindow.AnswerRevealArea.Visibility = Visibility.Visible;
+
+            MainWindow.NextQBtn.Content = new TextBlock()
+                {Text = QuestionNumber == Questions.Length - 1 ? "Finish" : "Next >"};
         }
 
         /// <summary>
