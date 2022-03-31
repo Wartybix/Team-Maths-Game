@@ -76,7 +76,7 @@ namespace Maths_Game_Prototype
         /// </summary>
         protected virtual void DisplayQuestion()
         {
-            MainWindow.AnswerRevealArea.Visibility = Visibility.Hidden;
+            MainWindow.AnswerRevealArea.Visibility = Visibility.Collapsed;
             MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
             LockQuestion(false);
         }

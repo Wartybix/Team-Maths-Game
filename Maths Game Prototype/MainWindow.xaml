@@ -246,7 +246,7 @@
             <Grid Grid.Row="2" Margin="8">
                 <Button Name="CheckAnsBtn" Click="CheckAnsBtn_OnClick" Content="Check!" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Hidden">
+                <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Collapsed">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
