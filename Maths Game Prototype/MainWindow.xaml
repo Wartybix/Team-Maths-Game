@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Maths_Game_Prototype"
         mc:Ignorable="d"
-        Title="Untitled Maths Game" Height="450" Width="800">
+        Title="Untitled Maths Game" Height="450" Width="800" MinHeight="450" MinWidth="700">
 
     <Window.Resources>
         <FontFamily x:Key="ComicNeue-Bold">pack://application:,,,/Fonts/#Comic Neue Bold</FontFamily>
