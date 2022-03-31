@@ -72,20 +72,31 @@ namespace Maths_Game_Prototype
 
         /// <summary>
         /// Sets up the UI to display the current question.
+        /// Enables input of answer textboxes.
         /// </summary>
         protected virtual void DisplayQuestion()
         {
             MainWindow.AnswerRevealArea.Visibility = Visibility.Hidden;
             MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
+            LockQuestion(false);
         }
 
         /// <summary>
+        /// Enables/disables input of textboxes when answer is revealed.
+        /// </summary>
+        /// <param name="locked">True is input is to be disabled, False if input is to be enabled.</param>
+        protected abstract void LockQuestion(bool locked);
+
+        /// <summary>
         /// Checks user input against the current question's expected answer.
+        /// Disables input of answer textboxes.
+        /// Changes text of 'next question button' to 'Finish' or 'Next' depending if any more questions remain in the quiz.
         /// </summary>
         public virtual void CheckAnswer()
         {
             MainWindow.CheckAnsBtn.Visibility = Visibility.Collapsed;
             MainWindow.AnswerRevealArea.Visibility = Visibility.Visible;
+            LockQuestion(true);
 
             MainWindow.NextQBtn.Content = new TextBlock()
                 {Text = QuestionNumber == Questions.Length - 1 ? "Finish" : "Next >"};

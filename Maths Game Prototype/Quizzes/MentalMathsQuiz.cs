@@ -73,6 +73,15 @@ namespace Maths_Game_Prototype
             MainWindow.MentalMathsY.Text = currentQuestion.QuestionVariables["y"].ToString();
         }
 
+        /// <summary>
+        /// Enables/disables the mental maths answer textbox.
+        /// </summary>
+        /// <param name="locked">False to enable, True to disable.</param>
+        protected override void LockQuestion(bool locked)
+        {
+            MainWindow.MentalMathsAnsTb.IsEnabled = !locked;
+        }
+
         public override void CheckAnswer()
         {
             base.CheckAnswer();
