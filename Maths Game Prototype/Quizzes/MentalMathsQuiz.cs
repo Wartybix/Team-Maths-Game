@@ -80,6 +80,11 @@ namespace Maths_Game_Prototype
         protected override void LockQuestion(bool locked)
         {
             MainWindow.MentalMathsAnsTb.IsEnabled = !locked;
+
+            if (locked)
+                MainWindow.NextQBtn.Focus();
+            else
+                MainWindow.MentalMathsAnsTb.Focus();
         }
 
         public override void CheckAnswer()

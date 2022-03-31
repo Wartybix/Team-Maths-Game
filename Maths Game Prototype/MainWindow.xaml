@@ -103,6 +103,29 @@
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="FontSize" Value="96"/>
             <Setter Property="FontFamily" Value="{StaticResource ComicNeue-Regular}"/>
+            <Setter Property="Background" Value="#C7C89B"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                            <StackPanel>
+                                <ScrollViewer HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" x:Name="PART_ContentHost"/>
+                                <Border Height="6" CornerRadius="2" Background="Black" Margin="12 0 12 12"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#B0B181"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style TargetType="Border">
@@ -148,11 +171,6 @@
 
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" x:Key="ListBtn">
             <Setter Property="Margin" Value="0 2"/>
-        </Style>
-
-        <Style TargetType="{x:Type Rectangle}" x:Key="Underscore">
-            <Setter Property="Fill" Value="Black"/>
-            <Setter Property="Height" Value="5"/>
         </Style>
     </Window.Resources>
 
@@ -230,15 +248,7 @@
                     <TextBlock Name="MentalMathsOperator" Style="{StaticResource BigOperator}" Foreground="#FF8A00"/>
                     <TextBlock Name="MentalMathsY" Style="{StaticResource BigText}"/>
                     <TextBlock Text="=" Style="{StaticResource BigText}"/>
-                    <Grid VerticalAlignment="Center">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBox Width="128" Height="Auto" Name="MentalMathsAnsTb"/>
-                        <Rectangle Grid.Row="1" Style="{StaticResource Underscore}"/>
-                    </Grid>
+                    <TextBox Width="128" VerticalAlignment="Center" Name="MentalMathsAnsTb"/>
 
                 </StackPanel>
             </Grid>
