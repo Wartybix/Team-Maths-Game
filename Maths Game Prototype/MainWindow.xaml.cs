@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Markup;
 using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
@@ -27,6 +27,7 @@ namespace Maths_Game_Prototype
         public StackPanel CurrentQuizLayout; //Holds the layout of the current quiz.
         public SoundPlayer SoundPlayer = new SoundPlayer(); //Plays a .wav file asynchronously while the rest of the program executes.
         public int Score = 0; //Holds the user's current score in a given quiz.
+        private Quiz[] _quizzes = { new MentalMathsQuiz() };
 
         #endregion
 
@@ -39,6 +40,7 @@ namespace Maths_Game_Prototype
             InitializeComponent();
 
             _currentlyOpenMenu = WelcomeScreen;
+            LoadQuizzes();
         }
 
         #region Menu logic
@@ -54,6 +56,23 @@ namespace Maths_Game_Prototype
             destinationMenu.Visibility = Visibility.Visible;
 
             _currentlyOpenMenu = destinationMenu;
+        }
+
+        private void LoadQuizzes()
+        {
+            foreach (var quiz in _quizzes)
+            {
+                var quizBtn = new Button
+                {
+                    Content = new TextBlock() {Text = quiz.QuizName},
+                    Style = (Style)Resources["ListBtn"],
+                    Tag = quiz
+                };
+
+                quizBtn.Click += QuizBtn_OnClick;
+
+                QuizSelector.Children.Add(quizBtn);
+            }
         }
 
         #endregion
@@ -121,6 +140,14 @@ namespace Maths_Game_Prototype
         #endregion
 
         #region OnClicks
+        private void QuizBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var buttonClicked = (Button)sender;
+
+            TransitionTo(QuizInstance);
+            _currentQuiz = (Quiz)buttonClicked.Tag;
+            _currentQuiz.NewGame();
+        }
 
         private void Ks2Btn_OnClick(object sender, RoutedEventArgs e)
         {
@@ -144,14 +171,6 @@ namespace Maths_Game_Prototype
         private void ExitQuizBtn_OnClick(object sender, RoutedEventArgs e)
         {
             TransitionTo(QuizMenu);
-        }
-
-        private void ExampleQuizBtn_OnClick(object sender, RoutedEventArgs e)
-        {
-            TransitionTo(QuizInstance);
-
-            _currentQuiz = new MentalMathsQuiz();
-            _currentQuiz.NewGame();
         }
 
         private void NextQBtn_OnClick(object sender, RoutedEventArgs e)
