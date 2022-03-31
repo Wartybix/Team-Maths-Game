@@ -133,12 +133,12 @@ namespace Maths_Game_Prototype
 
         private void QuizBackBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            TransitionTo(KsMenu);
+            TransitionTo(WelcomeScreen);
         }
 
         private void WelcomeBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            TransitionTo(KsMenu);
+            TransitionTo(QuizMenu);
         }
 
         private void ExitQuizBtn_OnClick(object sender, RoutedEventArgs e)
