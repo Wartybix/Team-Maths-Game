@@ -6,11 +6,16 @@
     <RootNamespace>Maths_Game_Prototype</RootNamespace>
 	  <!-->Nullable>disable</Nullable-->
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Fonts\ComicNeue-Bold.ttf" />
     <None Remove="Fonts\ComicNeue-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
