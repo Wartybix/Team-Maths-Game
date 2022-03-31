@@ -11,12 +11,20 @@ namespace Maths_Game_Prototype
 {
     internal class MentalMathsQuiz : Quiz
     {
+        /// <summary>
+        /// Constructor
+        /// Sets quiz name to 'Mental Maths' and the operator category to generic.
+        /// </summary>
         public MentalMathsQuiz()
         {
             QuizName = "Mental Maths";
             OperatorCategory = Operators.Generic;
         }
 
+        /// <summary>
+        /// Generates random questions of 'X [+/-] Y = _' and adds them to the quiz's questions.
+        /// Displays the current quiz's layout and the first question.
+        /// </summary>
         public override void NewGame()
         {
             base.NewGame();
@@ -47,6 +55,9 @@ namespace Maths_Game_Prototype
             DisplayQuestion();
         }
 
+        /// <summary>
+        /// Displays the mental maths X, operator, and Y variables' text and colour.
+        /// </summary>
         protected override void DisplayQuestion()
         {
             base.DisplayQuestion();

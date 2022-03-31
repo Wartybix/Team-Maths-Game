@@ -30,13 +30,15 @@ namespace Maths_Game_Prototype
 
         #endregion
 
+        /// <summary>
+        /// Sets up UI and assigns variables using UI elements.
+        /// Sets currently open menu to the welcome menu.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
 
             _currentlyOpenMenu = WelcomeScreen;
-
-            //QuizInstance.KeyDown += new KeyEventHandler(Enter_KeyDown);
         }
 
         #region Menu logic
@@ -76,6 +78,10 @@ namespace Maths_Game_Prototype
             ScoreNo.Text = Score.ToString();
         }
 
+        /// <summary>
+        /// Displays next question if there are questions remaining in the current quiz.
+        /// Displays results page if there are no more questions in the current quiz.
+        /// </summary>
         private void NextQuestion()
         {
             if (!_currentQuiz.EndOfQuiz())
@@ -84,6 +90,9 @@ namespace Maths_Game_Prototype
                 ShowResults();
         }
 
+        /// <summary>
+        /// Shows user's score from the quiz they just finished.
+        /// </summary>
         public void ShowResults()
         {
             TransitionTo(ResultsPage);
@@ -99,6 +108,10 @@ namespace Maths_Game_Prototype
 
         #region Sound
 
+        /// <summary>
+        /// Sets SoundPlayer's audio stream to the argument passed and plays it.
+        /// </summary>
+        /// <param name="audioStream">The audio stream to be played</param>
         public void PlaySound(Stream audioStream)
         {
             SoundPlayer.Stream = audioStream;
@@ -161,6 +174,12 @@ namespace Maths_Game_Prototype
 
         #region KeyPress
 
+        /// <summary>
+        /// Enter key checks the current question's answer when pressed.
+        /// Alternatively, advances to next question if answer is already displayed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void QuizInstance_OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key != Key.Enter) return;

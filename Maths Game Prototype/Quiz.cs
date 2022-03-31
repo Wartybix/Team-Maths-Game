@@ -13,7 +13,7 @@ namespace Maths_Game_Prototype
     internal abstract class Quiz
     {
         public string QuizName { get; set; } //Name of the quiz
-        protected Operator OperatorCategory { get; set; }
+        protected Operator OperatorCategory { get; set; } //The operator category of the quiz (e.g. addition focused quiz, division focused quiz, etc.)
         public Question[] Questions = new Question[5]; //Array of questions associated with the quiz
         protected int QuestionNumber { get; set; } //The index of the current question.
         protected Random Randoms; //A variable that produces random values for use in child classes.
@@ -38,7 +38,12 @@ namespace Maths_Game_Prototype
             MainWindow.TitleColour.Background = OperatorCategory.LightColour;
             MainWindow.ResetScore();
         }
-
+        
+        /// <summary>
+        /// Hides the previous quiz's layout.
+        /// Displays the current quiz's layout.
+        /// </summary>
+        /// <param name="layout"></param>
         protected void ShowQuizLayout(StackPanel layout)
         {
             if (MainWindow.CurrentQuizLayout != null) MainWindow.CurrentQuizLayout.Visibility = Visibility.Collapsed;
@@ -96,6 +101,10 @@ namespace Maths_Game_Prototype
             MainWindow.IncrementScore();
         }
 
+        /// <summary>
+        /// Displays a message when the user answers a question incorrectly.
+        /// </summary>
+        /// <param name="expectedAnswer"></param>
         public void WrongAnswer(string expectedAnswer)
         {
             MainWindow.AnswerRevealText.Text = $"No. The answer is {expectedAnswer}.";
