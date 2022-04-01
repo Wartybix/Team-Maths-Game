@@ -106,6 +106,8 @@
             <Setter Property="Background" Value="#C7C89B"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Margin" Value="8"/>
+            <Setter Property="AllowDrop" Value="False"/>
+            <EventSetter Event="CommandManager.PreviewExecuted" Handler="Tb_OnPreviewExecuted"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
@@ -248,7 +250,7 @@
                     <TextBlock Name="MentalMathsOperator" Style="{StaticResource BigOperator}" Foreground="#FF8A00"/>
                     <TextBlock Name="MentalMathsY" Style="{StaticResource BigText}"/>
                     <TextBlock Text="=" Style="{StaticResource BigText}"/>
-                    <TextBox Width="128" VerticalAlignment="Center" Name="MentalMathsAnsTb"/>
+                    <TextBox Width="128" VerticalAlignment="Center" PreviewTextInput="TwoCharIntegerTb_OnPreviewTextInput" Name="MentalMathsAnsTb"/>
 
                 </StackPanel>
             </Grid>

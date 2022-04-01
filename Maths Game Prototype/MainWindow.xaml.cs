@@ -4,6 +4,7 @@ using System.Media;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 //using System.Windows.Forms;
@@ -26,8 +27,9 @@ namespace Maths_Game_Prototype
         private Quiz _currentQuiz; //Holds the quiz currently in progress.
         public StackPanel CurrentQuizLayout; //Holds the layout of the current quiz.
         public SoundPlayer SoundPlayer = new SoundPlayer(); //Plays a .wav file asynchronously while the rest of the program executes.
-        public int Score = 0; //Holds the user's current score in a given quiz.
-        private Quiz[] _quizzes = { new MentalMathsQuiz() };
+        public int Score; //Holds the user's current score in a given quiz.
+        private readonly Quiz[] _quizzes = { new MentalMathsQuiz() };
+        private readonly Regex _integers = new Regex("[0-9]*$");
 
         #endregion
 
@@ -209,6 +211,38 @@ namespace Maths_Game_Prototype
                 _currentQuiz.CheckAnswer();
         }
 
+        private void ValidateInput(object sender, TextCompositionEventArgs e, Regex regex)
+        {
+            var textBox = (TextBox)sender;
+
+            var writtenText = textBox.Text;
+            writtenText = writtenText.Remove(textBox.SelectionStart, textBox.SelectionLength);
+            writtenText = writtenText.Insert(textBox.CaretIndex, e.Text);
+
+            e.Handled = !regex.IsMatch(writtenText);
+        }
+
         #endregion
+
+        private void IntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            ValidateInput(sender, e, new Regex("^-?[\\d]*$"));
+        }
+
+        private void TwoCharIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            ValidateInput(sender, e, new Regex("(^[\\d]{0,2}$)|(^-[\\d]?$)"));
+        }
+
+        private void Tb_OnPreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Paste)
+                e.Handled = true;
+        }
+
+        private void MentalMathsAnsTb_OnDragEnter(object sender, DragEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
