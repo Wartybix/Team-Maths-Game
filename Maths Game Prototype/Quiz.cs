@@ -121,7 +121,7 @@ namespace Maths_Game_Prototype
         public void WrongAnswer(string expectedAnswer)
         {
             MainWindow.AnswerRevealText.Text = $"No. The answer is {expectedAnswer}.";
-            MainWindow.PlaySound(Sounds.disappointment);
+            //MainWindow.PlaySound(Sounds.disappointment);
         }
     }
 }

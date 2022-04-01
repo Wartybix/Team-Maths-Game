@@ -122,7 +122,7 @@ namespace Maths_Game_Prototype
             ResultsUserScoreTxt.Text = Score.ToString();
             ResultsMaxScoreTxt.Text = _currentQuiz.Questions.Length.ToString();
 
-            PlaySound(Score == _currentQuiz.Questions.Length ? Sounds.thrilled : Sounds.conclusion);
+            PlaySound(Sounds.thrilled);
         }
 
         #endregion
@@ -196,6 +196,17 @@ namespace Maths_Game_Prototype
         #region KeyPress
 
         /// <summary>
+        /// Prevents spaces being entered into textboxes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void QuizInstance_OnPreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        /// <summary>
         /// Enter key checks the current question's answer when pressed.
         /// Alternatively, advances to next question if answer is already displayed.
         /// </summary>
@@ -215,15 +226,13 @@ namespace Maths_Game_Prototype
         {
             var textBox = (TextBox)sender;
 
+
             var writtenText = textBox.Text;
             writtenText = writtenText.Remove(textBox.SelectionStart, textBox.SelectionLength);
             writtenText = writtenText.Insert(textBox.CaretIndex, e.Text);
 
             e.Handled = !regex.IsMatch(writtenText);
         }
-
-        #endregion
-
         private void IntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             ValidateInput(sender, e, new Regex("^-?[\\d]*$"));
@@ -244,5 +253,8 @@ namespace Maths_Game_Prototype
         {
             e.Handled = true;
         }
+
+        #endregion
+
     }
 }

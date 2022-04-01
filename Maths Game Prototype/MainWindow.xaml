@@ -213,7 +213,7 @@
 
         </Grid>
 
-        <Grid Name="QuizInstance" Background="#F8FAB1" Visibility="Collapsed" KeyDown="QuizInstance_OnKeyDown">
+        <Grid Name="QuizInstance" Background="#F8FAB1" Visibility="Collapsed" KeyDown="QuizInstance_OnKeyDown" PreviewKeyDown="QuizInstance_OnPreviewKeyDown">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -263,7 +263,7 @@
                     <Button Name="CheckAnsBtn" Click="CheckAnsBtn_OnClick" Content="Check!"/>
                 </StackPanel>
 
-                <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Collapsed">
+                <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Visible">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
