@@ -18,6 +18,7 @@ namespace Maths_Game_Prototype
         protected int QuestionNumber { get; set; } //The index of the current question.
         protected Random Randoms; //A variable that produces random values for use in child classes.
         protected MainWindow MainWindow; //References the MainWindow.
+        protected bool PaperTip = false; //True if 'do workings on paper' tip is shown in quiz.
 
 
         /// <summary>
@@ -36,6 +37,7 @@ namespace Maths_Game_Prototype
 
             MainWindow.QuizNameTxt.Text = QuizName;
             MainWindow.TitleColour.Background = OperatorCategory.LightColour;
+            MainWindow.PaperTip.Visibility = PaperTip ? Visibility.Visible : Visibility.Collapsed;
             MainWindow.ResetScore();
         }
         

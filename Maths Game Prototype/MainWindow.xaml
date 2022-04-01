@@ -256,7 +256,12 @@
             </Grid>
 
             <Grid Grid.Row="2" Margin="8">
-                <Button Name="CheckAnsBtn" Click="CheckAnsBtn_OnClick" Content="Check!" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Border Name="PaperTip" Visibility="Collapsed" Background="#B4C3D2" BorderBrush="Transparent" Margin="0 0 4 0">
+                        <TextBlock Text="Tip: Do your workings out on paper" Margin="8 0"/>
+                    </Border>
+                    <Button Name="CheckAnsBtn" Click="CheckAnsBtn_OnClick" Content="Check!"/>
+                </StackPanel>
 
                 <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Collapsed">
                     <Grid>
