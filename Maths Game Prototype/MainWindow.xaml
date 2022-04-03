@@ -84,7 +84,7 @@
         </Style>
 
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="MediumText">
-            <Setter Property="FontSize" Value="48"/>
+            <Setter Property="FontSize" Value="36"/>
         </Style>
 
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="BigText">
@@ -101,13 +101,37 @@
         </Style>
 
         <Style TargetType="{x:Type TextBox}">
-            <Setter Property="FontSize" Value="96"/>
+            <Setter Property="FontSize" Value="36"/>
             <Setter Property="FontFamily" Value="{StaticResource ComicNeue-Regular}"/>
             <Setter Property="Background" Value="#C7C89B"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="Margin" Value="8"/>
             <Setter Property="AllowDrop" Value="False"/>
             <EventSetter Event="CommandManager.PreviewExecuted" Handler="Tb_OnPreviewExecuted"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                            <StackPanel>
+                                <ScrollViewer HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" x:Name="PART_ContentHost"/>
+                                <Border Height="2" CornerRadius="1" Background="Black" Margin="12 0 12 12"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#B0B181"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="BigTb">
+            <Setter Property="FontSize" Value="96"/>
+            <Setter Property="Margin" Value="8"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
@@ -244,14 +268,23 @@
 
             </Grid>
 
-            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Name="MentalMathsGrid" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Grid Grid.Row="1">
+                <StackPanel Name="MentalMathsGrid" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
                     <TextBlock Name="MentalMathsX"  Style="{StaticResource BigText}"/>
                     <TextBlock Name="MentalMathsOperator" Style="{StaticResource BigOperator}" Foreground="#FF8A00"/>
                     <TextBlock Name="MentalMathsY" Style="{StaticResource BigText}"/>
                     <TextBlock Text="=" Style="{StaticResource BigText}"/>
-                    <TextBox Width="128" VerticalAlignment="Center" PreviewTextInput="TwoCharIntegerTb_OnPreviewTextInput" Name="MentalMathsAnsTb"/>
+                    <TextBox Width="128" VerticalAlignment="Center" PreviewTextInput="TwoCharIntegerTb_OnPreviewTextInput" Name="MentalMathsAnsTb" Style="{StaticResource BigTb}"/>
+                </StackPanel>
 
+                <StackPanel Name="WtdArea" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="32 0 0 0" Width="512" Visibility="Collapsed">
+                    <TextBlock Style="{StaticResource MediumText}" TextWrapping="Wrap" HorizontalAlignment="Left">
+                        <Run Text="What is"/><!-- This comments remove the space between the 'runs' because of how XAML treats whitespace
+                        --><Run Name="WtdMinusText" Foreground="#C832CB" FontFamily="{StaticResource ComicNeue-Bold}"/>
+                        <Run Name="WtdWordedNumberTxt" FontFamily="{StaticResource ComicNeue-Bold}"/>
+                        <Run Text="in digits?"/>
+                    </TextBlock>
+                    <TextBox Name="WtdTb" PreviewTextInput="FourDigitIntegerTb_OnPreviewTextInput" HorizontalAlignment="Left" Margin="0 32 0 0" Width="128"/>
                 </StackPanel>
             </Grid>
 

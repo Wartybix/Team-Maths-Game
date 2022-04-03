@@ -10,6 +10,7 @@ using System.Windows.Controls;
 //using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Markup;
+using Maths_Game_Prototype.Quizzes;
 using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 using KeyEventHandler = System.Windows.Input.KeyEventHandler;
 
@@ -28,8 +29,7 @@ namespace Maths_Game_Prototype
         public StackPanel CurrentQuizLayout; //Holds the layout of the current quiz.
         public SoundPlayer SoundPlayer = new SoundPlayer(); //Plays a .wav file asynchronously while the rest of the program executes.
         public int Score; //Holds the user's current score in a given quiz.
-        private readonly Quiz[] _quizzes = { new MentalMathsQuiz() };
-        private readonly Regex _integers = new Regex("[0-9]*$");
+        private readonly Quiz[] _quizzes = { new WordsToDigitsQuiz(), new MentalMathsQuiz() };
 
         #endregion
 
@@ -243,15 +243,15 @@ namespace Maths_Game_Prototype
             ValidateInput(sender, e, new Regex("(^[\\d]{0,2}$)|(^-[\\d]?$)"));
         }
 
+        private void FourDigitIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            ValidateInput(sender, e, new Regex("^-?[\\d]{0,4}$"));
+        }
+
         private void Tb_OnPreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             if (e.Command == ApplicationCommands.Paste)
                 e.Handled = true;
-        }
-
-        private void MentalMathsAnsTb_OnDragEnter(object sender, DragEventArgs e)
-        {
-            e.Handled = true;
         }
 
         #endregion
