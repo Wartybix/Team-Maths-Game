@@ -210,6 +210,31 @@
             </Setter>
         </Style> <!-- Medium textbox -->
 
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="BigTb">
+            <Setter Property="FontSize" Value="64"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                            <StackPanel>
+                                <ScrollViewer HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" x:Name="PART_ContentHost"/>
+                                <Border Height="2" CornerRadius="1" Background="Black" Margin="12 0 12 12"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#B0B181"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- big textbox -->
+
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="BigTbNoUnderscore">
             <Setter Property="FontSize" Value="64"/>
             <Setter Property="Template">
@@ -235,6 +260,7 @@
 
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="HugeTb">
             <Setter Property="FontSize" Value="96"/>
+            <Setter Property="Width" Value="128"/>
             <Setter Property="Margin" Value="8"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -256,6 +282,13 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BigTb}" x:Key="NumSeqTb">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <EventSetter Event="PreviewTextInput" Handler="TwoDigitIntegerTb_OnPreviewTextInput"/>
         </Style>
 
         <Style TargetType="Border">
@@ -417,6 +450,27 @@
                     <Border BorderThickness="2" CornerRadius="1" Margin="0 0 0 8"/>
 
                     <TextBox Name="ColumnSubAddAnswerTb" Width="120" PreviewTextInput="ThreeCharIntegerTb_OnPreviewTextInput" Style="{StaticResource BigTbNoUnderscore}"/>
+                </StackPanel>
+
+                <StackPanel Name="NumberSequencesArea" Visibility="Collapsed" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Name="SeqNum1TextBlock" Visibility="Collapsed" Text="1" Style="{StaticResource BigText}"/>
+                    <TextBox Name="SeqNum1Input" Style="{StaticResource NumSeqTb}"/>
+                    <TextBlock Text="," Style="{StaticResource BigText}" Margin="8 0"/>
+
+                    <TextBlock Name="SeqNum2TextBlock" Visibility="Collapsed" Text="1" Style="{StaticResource BigText}"/>
+                    <TextBox Name="SeqNum2Input" Style="{StaticResource NumSeqTb}"/>
+                    <TextBlock Text="," Style="{StaticResource BigText}" Margin="8 0"/>
+
+                    <TextBlock Name="SeqNum3TextBlock" Visibility="Collapsed" Text="1" Style="{StaticResource BigText}"/>
+                    <TextBox Name="SeqNum3Input" Style="{StaticResource NumSeqTb}"/>
+                    <TextBlock Text="," Style="{StaticResource BigText}" Margin="8 0"/>
+
+                    <TextBlock Name="SeqNum4TextBlock" Visibility="Collapsed" Text="1" Style="{StaticResource BigText}"/>
+                    <TextBox Name="SeqNum4Input" Style="{StaticResource NumSeqTb}"/>
+                    <TextBlock Text="," Style="{StaticResource BigText}" Margin="8 0"/>
+
+                    <TextBlock Name="SeqNum5TextBlock" Visibility="Collapsed" Text="1" Style="{StaticResource BigText}"/>
+                    <TextBox Name="SeqNum5Input" Style="{StaticResource NumSeqTb}"/>
                 </StackPanel>
             </Grid>
 
