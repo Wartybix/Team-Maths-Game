@@ -88,11 +88,19 @@
         </Style>
 
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="BigText">
+            <Setter Property="FontSize" Value="64"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="HugeText">
             <Setter Property="FontSize" Value="96"/>
             <Setter Property="Margin" Value="8"/>
         </Style>
 
-        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BigText}" x:Key="BigOperator">
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="BigOperator">
+            <Setter Property="FontSize" Value="80"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource HugeText}" x:Key="HugeOperator">
             <Setter Property="FontSize" Value="128"/>
         </Style>
 
@@ -127,9 +135,32 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style> <!-- Medium textbox -->
+
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="BigTbNoUnderscore">
+            <Setter Property="FontSize" Value="64"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                            <StackPanel>
+                                <ScrollViewer HorizontalAlignment="Right" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" x:Name="PART_ContentHost"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#B0B181"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
-        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="BigTb">
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="HugeTb">
             <Setter Property="FontSize" Value="96"/>
             <Setter Property="Margin" Value="8"/>
             <Setter Property="Template">
@@ -270,11 +301,11 @@
 
             <Grid Grid.Row="1">
                 <StackPanel Name="MentalMathsGrid" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
-                    <TextBlock Name="MentalMathsX"  Style="{StaticResource BigText}"/>
-                    <TextBlock Name="MentalMathsOperator" Style="{StaticResource BigOperator}" Foreground="#FF8A00"/>
-                    <TextBlock Name="MentalMathsY" Style="{StaticResource BigText}"/>
-                    <TextBlock Text="=" Style="{StaticResource BigText}"/>
-                    <TextBox Width="128" VerticalAlignment="Center" PreviewTextInput="TwoCharIntegerTb_OnPreviewTextInput" Name="MentalMathsAnsTb" Style="{StaticResource BigTb}"/>
+                    <TextBlock Name="MentalMathsX" Style="{StaticResource HugeText}"/>
+                    <TextBlock Name="MentalMathsOperator" Style="{StaticResource HugeOperator}" Foreground="#FF8A00"/>
+                    <TextBlock Name="MentalMathsY" Style="{StaticResource HugeText}"/>
+                    <TextBlock Text="=" Style="{StaticResource HugeText}"/>
+                    <TextBox Width="128" VerticalAlignment="Center" PreviewTextInput="TwoCharIntegerTb_OnPreviewTextInput" Name="MentalMathsAnsTb" Style="{StaticResource HugeTb}"/>
                 </StackPanel>
 
                 <StackPanel Name="WtdArea" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="32 0 0 0" Width="512" Visibility="Collapsed">
@@ -285,6 +316,34 @@
                         <Run Text="in digits?"/>
                     </TextBlock>
                     <TextBox Name="WtdTb" PreviewTextInput="FourDigitIntegerTb_OnPreviewTextInput" HorizontalAlignment="Left" Margin="0 32 0 0" Width="128"/>
+                </StackPanel>
+
+                <StackPanel Name="ColumnSubAddArea" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Name="ColumnSubAddXDigit1" Grid.Column="1" Style="{StaticResource BigText}"/>
+                        <TextBlock Name="ColumnSubAddXDigit2" Grid.Column="2" Style="{StaticResource BigText}"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="1" Name="ColumnSubAddYDigit1" Style="{StaticResource BigText}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Name="ColumnSubAddYDigit2" Style="{StaticResource BigText}"/>
+
+
+                        <TextBlock Grid.Row="1" Name="ColumnSubAddOperator" Style="{StaticResource BigOperator}" Margin="0 0 16 0"/>
+
+                    </Grid>
+
+                    <Border BorderThickness="2" CornerRadius="1" Margin="0 0 0 8"/>
+
+                    <TextBox Name="ColumnSubAddAnswerTb" Width="120" PreviewTextInput="ThreeCharIntegerTb_OnPreviewTextInput" Style="{StaticResource BigTbNoUnderscore}"/>
                 </StackPanel>
             </Grid>
 

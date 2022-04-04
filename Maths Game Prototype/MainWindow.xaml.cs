@@ -29,7 +29,7 @@ namespace Maths_Game_Prototype
         public StackPanel CurrentQuizLayout; //Holds the layout of the current quiz.
         public SoundPlayer SoundPlayer = new SoundPlayer(); //Plays a .wav file asynchronously while the rest of the program executes.
         public int Score; //Holds the user's current score in a given quiz.
-        private readonly Quiz[] _quizzes = { new WordsToDigitsQuiz(), new MentalMathsQuiz() };
+        private readonly Quiz[] _quizzes = { new WordsToDigitsQuiz(), new MentalMathsQuiz(), new ColumnAdditionQuiz(), new ColumnSubtractionQuiz() };
 
         #endregion
 
@@ -242,6 +242,10 @@ namespace Maths_Game_Prototype
         {
             ValidateInput(sender, e, new Regex("(^[\\d]{0,2}$)|(^-[\\d]?$)"));
         }
+        private void ThreeCharIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            ValidateInput(sender, e, new Regex("(^-[\\d]{0,2}$)|(^[\\d]{0,3}$)"));
+        }
 
         private void FourDigitIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -255,6 +259,5 @@ namespace Maths_Game_Prototype
         }
 
         #endregion
-
     }
 }
