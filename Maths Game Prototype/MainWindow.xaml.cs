@@ -179,6 +179,7 @@ namespace Maths_Game_Prototype
 
         private void ExitQuizBtn_OnClick(object sender, RoutedEventArgs e)
         {
+            SoundPlayer.Stop();
             TransitionTo(QuizMenu);
         }
 
@@ -193,8 +194,8 @@ namespace Maths_Game_Prototype
         }
         private void Replay_OnClick(object sender, RoutedEventArgs e)
         {
+            SoundPlayer.Stop();
             TransitionTo(QuizInstance);
-
             _currentQuiz.NewGame();
         }
 
