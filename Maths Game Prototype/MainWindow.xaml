@@ -76,11 +76,84 @@
             </Canvas>
         </Viewbox>
 
+        <Viewbox x:Key="LightBulbSprite" Stretch="Uniform">
+            <Canvas Name="svg39" Width="74" Height="90">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0"/>
+                </Canvas.RenderTransform>
+                <Canvas.Resources/>
+                <Canvas Name="g24">
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="1 0 0 1 -13.233 -5"/>
+                    </Canvas.RenderTransform>
+                    <Path Name="path2" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M59.632 75.107L59.632 72.285C59.632 67.325 61.647 62.56 65.161 59.212C69.557 55.023 71.978 49.373 71.978 43.303C71.978 31.184 62.119 21.325 50 21.325C49.173 21.325 48.333 21.371 47.504 21.463C37.004 22.624 28.644 31.476 28.057 42.054C27.703 48.433 30.123 54.637 34.697 59.074C38.301 62.57 40.368 67.384 40.368 72.282L40.368 75.106C40.368 78.105 42.807 80.544 45.806 80.544L54.193 80.544C57.192 80.546 59.632 78.106 59.632 75.107ZM55.632 75.107C55.632 75.9 54.986 76.545 54.194 76.545L45.807 76.545C45.014 76.545 44.369 75.899 44.369 75.107L44.369 72.283C44.369 66.31 41.859 60.45 37.483 56.204C33.742 52.575 31.762 47.498 32.052 42.277C32.532 33.627 39.364 26.389 47.945 25.44C48.629 25.364 49.321 25.326 50.002 25.326C59.915 25.326 67.98 33.39 67.98 43.304C67.98 48.269 66 52.89 62.404 56.317C58.102 60.416 55.634 66.236 55.634 72.286L55.634 75.107L55.632 75.107Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path4" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M56.509 82.521L43.491 82.521C42.662 82.521 41.991 83.192 41.991 84.021C41.991 84.85 42.662 85.521 43.491 85.521L56.51 85.521C57.339 85.521 58.01 84.85 58.01 84.021C58.01 83.192 57.338 82.521 56.509 82.521Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path6" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M58.009 88.761C58.009 87.932 57.338 87.261 56.509 87.261L43.491 87.261C42.662 87.261 41.991 87.932 41.991 88.761C41.991 89.59 42.662 90.261 43.491 90.261L56.51 90.261C57.338 90.261 58.009 89.589 58.009 88.761Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path8" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M14.733 43.267L23.376 43.267C24.205 43.267 24.876 42.596 24.876 41.767C24.876 40.938 24.205 40.267 23.376 40.267L14.733 40.267C13.904 40.267 13.233 40.938 13.233 41.767C13.233 42.596 13.904 43.267 14.733 43.267Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path10" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M86.767 41.767C86.767 40.938 86.096 40.267 85.267 40.267L76.624 40.267C75.795 40.267 75.124 40.938 75.124 41.767C75.124 42.596 75.795 43.267 76.624 43.267L85.267 43.267C86.096 43.267 86.767 42.596 86.767 41.767Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path12" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M48.5 6.5L48.5 15.143C48.5 15.972 49.171 16.643 50 16.643C50.829 16.643 51.5 15.972 51.5 15.143L51.5 6.5C51.5 5.671 50.829 5 50 5C49.171 5 48.5 5.671 48.5 6.5Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path14" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M73.877 15.769L67.766 21.88C67.18 22.465 67.18 23.416 67.766 24.001C68.059 24.294 68.443 24.44 68.827 24.44C69.211 24.44 69.595 24.294 69.888 24.001L75.999 17.89C76.585 17.305 76.585 16.354 75.999 15.769C75.412 15.183 74.463 15.183 73.877 15.769Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path16" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M32.234 59.533C31.648 58.947 30.699 58.947 30.113 59.533L24.002 65.644C23.416 66.229 23.416 67.179 24.002 67.765C24.295 68.058 24.679 68.204 25.063 68.204C25.447 68.204 25.831 68.058 26.124 67.765L32.235 61.654C32.82 61.069 32.82 60.119 32.234 59.533Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path18" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M30.113 24.001C30.406 24.294 30.79 24.44 31.174 24.44C31.558 24.44 31.942 24.294 32.235 24.001C32.821 23.416 32.821 22.465 32.235 21.88L26.124 15.769C25.538 15.183 24.589 15.183 24.003 15.769C23.417 16.354 23.417 17.305 24.003 17.89L30.113 24.001Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path20" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M73.877 67.765C74.17 68.058 74.554 68.204 74.938 68.204C75.322 68.204 75.706 68.058 75.999 67.765C76.585 67.179 76.585 66.229 75.999 65.644L69.888 59.533C69.302 58.947 68.353 58.947 67.767 59.533C67.181 60.119 67.181 61.069 67.767 61.654L73.877 67.765Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="path22" Fill="#000000" StrokeMiterLimit="2" StrokeLineJoin="Round">
+                        <Path.Data>
+                            <PathGeometry Figures="M54.754 93.5C54.754 92.671 54.083 92 53.254 92L46.745 92C45.916 92 45.245 92.671 45.245 93.5C45.245 94.329 45.916 95 46.745 95L53.254 95C54.083 95 54.754 94.329 54.754 93.5Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontFamily" Value="{StaticResource ComicNeue-Regular}"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="SmallText">
+            <Setter Property="FontSize" Value="20"/>
         </Style>
 
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="MediumText">
@@ -349,9 +422,13 @@
 
             <Grid Grid.Row="2" Margin="8">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Border Name="PaperTip" Visibility="Collapsed" Background="#B4C3D2" BorderBrush="Transparent" Margin="0 0 4 0">
-                        <TextBlock Text="Tip: Do your workings out on paper" Margin="8 0"/>
-                    </Border>
+                    <StackPanel Name="PaperTip" Orientation="Horizontal">
+                        <ContentPresenter Content="{StaticResource LightBulbSprite}" Width="16"/>
+                        <TextBlock Style="{StaticResource SmallText}" Margin="6 0 16 0">
+                            <Run Text="Tip:" FontFamily="{StaticResource ComicNeue-Bold}"/>
+                            <Run Text="Do your workings out on paper"/>
+                        </TextBlock>
+                    </StackPanel>
                     <Button Name="CheckAnsBtn" Click="CheckAnsBtn_OnClick" Content="Check!"/>
                 </StackPanel>
 
