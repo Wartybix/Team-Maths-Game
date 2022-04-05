@@ -51,6 +51,11 @@ namespace Maths_Game_Prototype
                 Questions[index] = new Question(questionVariables, expectedAnswer);
             }
 
+            MainWindow.MentalMathsAnsTb.PreviewTextInput -= MainWindow.ThreeDigitPosIntegerTb_OnPreviewTextInput;
+            MainWindow.MentalMathsAnsTb.PreviewTextInput += MainWindow.TwoCharIntegerTb_OnPreviewTextInput;
+            MainWindow.MentalMathsAnsTb.Width = 128;
+
+            MainWindow.MultiplicationHint.Visibility = Visibility.Collapsed;
             ShowQuizLayout(MainWindow.MentalMathsGrid);
             DisplayQuestion();
         }

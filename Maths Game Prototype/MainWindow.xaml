@@ -9,7 +9,7 @@
 
     <Window.Resources>
         <FontFamily x:Key="ComicNeue-Bold">pack://application:,,,/Fonts/#Comic Neue Bold</FontFamily>
-        <!--FontFamily x:Key="ComicNeueAngular-Bold">pack://application:,,,/Fonts/#Comic Neue Angular Bold</FontFamily-->
+        <FontFamily x:Key="ComicNeue-Italic">pack://application:,,,/Fonts/#Comic Neue Italic</FontFamily>
         <FontFamily x:Key="ComicNeue-Regular">pack://application:,,,/Fonts/#Comic Neue Regular</FontFamily>
 
         <SolidColorBrush x:Key="Whiteish" Color="#F6F6F6"/>
@@ -406,13 +406,22 @@
             </Grid>
 
             <Grid Grid.Row="1">
-                <StackPanel Name="MentalMathsGrid" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
-                    <TextBlock Name="MentalMathsX" Style="{StaticResource HugeText}"/>
-                    <TextBlock Name="MentalMathsOperator" Style="{StaticResource HugeOperator}" Foreground="#FF8A00"/>
-                    <TextBlock Name="MentalMathsY" Style="{StaticResource HugeText}"/>
-                    <TextBlock Text="=" Style="{StaticResource HugeText}"/>
-                    <TextBox Width="128" VerticalAlignment="Center" PreviewTextInput="TwoCharIntegerTb_OnPreviewTextInput" Name="MentalMathsAnsTb" Style="{StaticResource HugeTb}"/>
+                <StackPanel Name="MentalMathsGrid" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Name="MentalMathsX" Style="{StaticResource HugeText}"/>
+                        <TextBlock Name="MentalMathsOperator" Style="{StaticResource HugeOperator}" Foreground="#FF8A00"/>
+                        <TextBlock Name="MentalMathsY" Style="{StaticResource HugeText}"/>
+                        <TextBlock Text="=" Style="{StaticResource HugeText}"/>
+                        <TextBox VerticalAlignment="Center" Name="MentalMathsAnsTb" Style="{StaticResource HugeTb}"/>
+                    </StackPanel>
+                    <TextBlock Name="MultiplicationHint" Visibility="Collapsed" Margin="0 8 0 0">
+                        <Run Text="(This is the same as"/>
+                        <Run Text="doubling" Foreground="#204FF6" FontFamily="{StaticResource ComicNeue-Italic}"/>
+                        <Run Name="MultiplicationHintNumber"/><!--
+                        --><Run Text=")"/>
+                    </TextBlock>
                 </StackPanel>
+
 
                 <StackPanel Name="WtdArea" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="32 0 0 0" Width="512" Visibility="Collapsed">
                     <TextBlock Style="{StaticResource MediumText}" TextWrapping="Wrap" HorizontalAlignment="Left">

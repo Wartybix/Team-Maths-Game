@@ -35,7 +35,8 @@ namespace Maths_Game_Prototype
             new MentalMathsQuiz(),
             new ColumnAdditionQuiz(),
             new ColumnSubtractionQuiz(),
-            new NumberSequencesQuiz()
+            new NumberSequencesQuiz(),
+            new MultiplicationTablesQuiz()
         };
 
         #endregion
@@ -246,7 +247,7 @@ namespace Maths_Game_Prototype
             ValidateInput(sender, e, new Regex("^-?[\\d]*$"));
         }
 
-        private void TwoCharIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        public void TwoCharIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             ValidateInput(sender, e, new Regex("(^[\\d]{0,2}$)|(^-[\\d]?$)"));
         }
@@ -257,6 +258,10 @@ namespace Maths_Game_Prototype
         private void TwoDigitIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             ValidateInput(sender, e, new Regex("^-?[\\d]{0,2}$"));
+        }
+        public void ThreeDigitPosIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            ValidateInput(sender, e, new Regex("^[\\d]{0,3}$"));
         }
 
         private void FourDigitIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)

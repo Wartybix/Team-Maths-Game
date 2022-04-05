@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <None Remove="Fonts\ComicNeue-Bold.ttf" />
+    <None Remove="Fonts\ComicNeue-Italic.ttf" />
     <None Remove="Fonts\ComicNeue-Regular.ttf" />
   </ItemGroup>
 
@@ -25,6 +26,9 @@
 
   <ItemGroup>
     <Resource Include="Fonts\ComicNeue-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\ComicNeue-Italic.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\ComicNeue-Regular.ttf">
