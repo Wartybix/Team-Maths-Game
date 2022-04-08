@@ -26,7 +26,7 @@ namespace Maths_Game_Prototype
 
         private Grid _currentlyOpenMenu; //Holds the menu currently visible
         private Quiz _currentQuiz; //Holds the quiz currently in progress.
-        public StackPanel CurrentQuizLayout; //Holds the layout of the current quiz.
+        public dynamic CurrentQuizLayout; //Holds the layout of the current quiz.
         public SoundPlayer SoundPlayer = new SoundPlayer(); //Plays a .wav file asynchronously while the rest of the program executes.
         public int Score; //Holds the user's current score in a given quiz.
         private readonly Quiz[] _quizzes =
@@ -36,7 +36,8 @@ namespace Maths_Game_Prototype
             new ColumnAdditionQuiz(),
             new ColumnSubtractionQuiz(),
             new NumberSequencesQuiz(),
-            new MultiplicationTablesQuiz()
+            new MultiplicationTablesQuiz(),
+            new BusStopDivisionQuiz()
         };
 
         #endregion
@@ -276,5 +277,10 @@ namespace Maths_Game_Prototype
         }
 
         #endregion
+
+        private void BusStopAnsTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            ValidateInput(sender, e, new Regex("(^[\\d]{0,4}$)|(^[\\d]{1,4}[.][\\d]{0,3}$)"));
+        }
     }
 }

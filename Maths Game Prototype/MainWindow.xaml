@@ -169,6 +169,10 @@
             <Setter Property="Margin" Value="8"/>
         </Style>
 
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MediumText}" x:Key="MediumOperator">
+            <Setter Property="FontSize" Value="44"/>
+        </Style>
+
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="BigOperator">
             <Setter Property="FontSize" Value="80"/>
         </Style>
@@ -235,7 +239,7 @@
         </Style>
         <!-- big textbox -->
 
-        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="BigTbNoUnderscore">
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="BigTbNoUnderscoreRightJustify">
             <Setter Property="FontSize" Value="64"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -243,6 +247,29 @@
                         <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
                             <StackPanel>
                                 <ScrollViewer HorizontalAlignment="Right" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" x:Name="PART_ContentHost"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#B0B181"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" x:Key="BigTbNoUnderscoreLeftJustify">
+            <Setter Property="FontSize" Value="64"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                            <StackPanel>
+                                <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" x:Name="PART_ContentHost"/>
                             </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -422,7 +449,6 @@
                     </TextBlock>
                 </StackPanel>
 
-
                 <StackPanel Name="WtdArea" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="32 0 0 0" Width="512" Visibility="Collapsed">
                     <TextBlock Style="{StaticResource MediumText}" TextWrapping="Wrap" HorizontalAlignment="Left">
                         <Run Text="What is"/><!-- This comments remove the space between the 'runs' because of how XAML treats whitespace
@@ -458,7 +484,7 @@
 
                     <Border BorderThickness="2" CornerRadius="1" Margin="0 0 0 8"/>
 
-                    <TextBox Name="ColumnSubAddAnswerTb" Width="120" PreviewTextInput="ThreeCharIntegerTb_OnPreviewTextInput" Style="{StaticResource BigTbNoUnderscore}"/>
+                    <TextBox Name="ColumnSubAddAnswerTb" Width="120" PreviewTextInput="ThreeCharIntegerTb_OnPreviewTextInput" Style="{StaticResource BigTbNoUnderscoreRightJustify}"/>
                 </StackPanel>
 
                 <StackPanel Name="NumberSequencesArea" Visibility="Collapsed" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -481,6 +507,40 @@
                     <TextBlock Name="SeqNum5TextBlock" Visibility="Collapsed" Text="1" Style="{StaticResource BigText}"/>
                     <TextBox Name="SeqNum5Input" Style="{StaticResource NumSeqTb}"/>
                 </StackPanel>
+
+                <Grid Name="BusStopArea" Visibility="Collapsed">
+
+                    <StackPanel Margin="32 32 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                        <TextBlock Name="BusStopUpperDividend"  Style="{StaticResource MediumText}"/>
+                        <TextBlock Text="÷" Foreground="#C05656" Style="{StaticResource MediumOperator}" Margin="4 0"/>
+                        <TextBlock Name="BusStopUpperDivisor" Style="{StaticResource MediumText}"/>
+                    </StackPanel>
+
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="2" Name="BusStopDivisor" Margin="0 0 8 0" Style="{StaticResource HugeText}"/>
+                        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" CornerRadius="0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Name="BusStopDividendDigit1" Margin="8 0 4 0" Style="{StaticResource HugeText}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="3" Name="BusStopDividendDigit2" Margin="0 0 4 0" Style="{StaticResource HugeText}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="4" Name="BusStopDividendDigit3" Margin="0 0 4 0" Style="{StaticResource HugeText}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="5" Name="BusStopDividendDigit4" Style="{StaticResource HugeText}"/>
+                        <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" CornerRadius="0"/>
+                        <TextBox Grid.Column="2" Grid.ColumnSpan="4" Name="BusStopAnsTb" Width="288" Margin="0 0 0 4" PreviewTextInput="BusStopAnsTb_OnPreviewTextInput" Style="{StaticResource BigTbNoUnderscoreLeftJustify}"/>
+                    </Grid>
+                </Grid>
             </Grid>
 
             <Grid Grid.Row="2" Margin="8">

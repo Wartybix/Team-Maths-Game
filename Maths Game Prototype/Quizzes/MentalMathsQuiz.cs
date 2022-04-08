@@ -69,8 +69,6 @@ namespace Maths_Game_Prototype
 
             var currentQuestion = Questions[QuestionNumber];
 
-            if (currentQuestion == null) return;
-
             MainWindow.MentalMathsAnsTb.Text = string.Empty;
             MainWindow.MentalMathsX.Text = currentQuestion.QuestionVariables["x"].ToString();
             MainWindow.MentalMathsOperator.Text = currentQuestion.QuestionVariables["operator"].Symbol;

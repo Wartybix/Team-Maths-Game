@@ -46,7 +46,7 @@ namespace Maths_Game_Prototype
         /// Displays the current quiz's layout.
         /// </summary>
         /// <param name="layout"></param>
-        protected void ShowQuizLayout(StackPanel layout)
+        protected void ShowQuizLayout(dynamic layout)
         {
             if (MainWindow.CurrentQuizLayout != null) MainWindow.CurrentQuizLayout.Visibility = Visibility.Collapsed;
             MainWindow.CurrentQuizLayout = layout;
