@@ -121,12 +121,6 @@
   <data name="applause" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\applause.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="conclusion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\conclusion.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="disappointment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\disappointment.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="thrilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\thrilled.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
