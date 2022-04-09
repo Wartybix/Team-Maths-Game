@@ -20,6 +20,7 @@ namespace Maths_Game_Prototype.Quizzes
             QuizName = "Bus Stop Method";
             OperatorCategory = Operators.Divide;
             PaperTip = true;
+            TextInputRestriction = new Regex("(^[\\d]{0,4}$)|(^[\\d]{1,4}[.][\\d]{0,3}$)");
         }
 
         /// <summary>

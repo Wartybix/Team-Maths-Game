@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +20,7 @@ namespace Maths_Game_Prototype
         protected Random Randoms; //A variable that produces random values for use in child classes.
         protected MainWindow MainWindow; //References the MainWindow.
         protected bool PaperTip = false; //True if 'do workings on paper' tip is shown in quiz.
+        public Regex TextInputRestriction; //Holds regex for allowed characters in textboxes of a child quiz (specified in constructors of children)
 
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -15,6 +16,7 @@ namespace Maths_Game_Prototype.Quizzes
         protected ColumnAddSubQuiz()
         {
             PaperTip = true;
+            TextInputRestriction = new Regex("(^-[\\d]{0,2}$)|(^[\\d]{0,3}$)");
         }
 
         public override void NewGame()

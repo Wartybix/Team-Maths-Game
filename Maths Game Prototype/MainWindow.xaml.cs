@@ -232,55 +232,34 @@ namespace Maths_Game_Prototype
                 _currentQuiz.CheckAnswer();
         }
 
-        private void ValidateInput(object sender, TextCompositionEventArgs e, Regex regex)
+        /// <summary>
+        /// Checks whether the input of given textbox (sender) matches the regular expression of the current quiz's text restriction
+        /// If it does not match the regex, the character the user entered won't be added.
+        /// </summary>
+        /// <param name="sender">The textbox the user has written into</param>
+        /// <param name="e">The value of what the user has typed</param>
+        private void ValidateInput(object sender, TextCompositionEventArgs e)
         {
-            var textBox = (TextBox)sender;
+            var textBox = (TextBox)sender; //Casts sender as textbox
 
+            var writtenText = textBox.Text; //Extracts the textbox's text as a string
+            writtenText = writtenText.Remove(textBox.SelectionStart, textBox.SelectionLength); //Removes text that has been highlighted by user (for overwriting)
+            writtenText = writtenText.Insert(textBox.CaretIndex, e.Text); //Inserts the character the user has typed into the position of the text where the caret is.
 
-            var writtenText = textBox.Text;
-            writtenText = writtenText.Remove(textBox.SelectionStart, textBox.SelectionLength);
-            writtenText = writtenText.Insert(textBox.CaretIndex, e.Text);
-
-            e.Handled = !regex.IsMatch(writtenText);
-        }
-        private void IntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            ValidateInput(sender, e, new Regex("^-?[\\d]*$"));
-        }
-
-        public void TwoCharIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            ValidateInput(sender, e, new Regex("(^[\\d]{0,2}$)|(^-[\\d]?$)"));
-        }
-        private void ThreeCharIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            ValidateInput(sender, e, new Regex("(^-[\\d]{0,2}$)|(^[\\d]{0,3}$)"));
-        }
-        private void TwoDigitIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            ValidateInput(sender, e, new Regex("^-?[\\d]{0,2}$"));
-        }
-        public void ThreeDigitPosIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            ValidateInput(sender, e, new Regex("^[\\d]{0,3}$"));
+            e.Handled = !_currentQuiz.TextInputRestriction.IsMatch(writtenText); //Adds character if the textbox's text matches the text input restriction regex of the current quiz.
         }
 
-        private void FourDigitIntegerTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            ValidateInput(sender, e, new Regex("^-?[\\d]{0,4}$"));
-        }
-
+        /// <summary>
+        /// Prevents pasting into textboxes
+        /// </summary>
+        /// <param name="sender">Currently focused textbox</param>
+        /// <param name="e">Value of what user has executed</param>
         private void Tb_OnPreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            if (e.Command == ApplicationCommands.Paste)
-                e.Handled = true;
+            if (e.Command == ApplicationCommands.Paste) //If the user has pasted something
+                e.Handled = true; //Don't add anything to the textbox
         }
 
         #endregion
-
-        private void BusStopAnsTb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            ValidateInput(sender, e, new Regex("(^[\\d]{0,4}$)|(^[\\d]{1,4}[.][\\d]{0,3}$)"));
-        }
     }
 }

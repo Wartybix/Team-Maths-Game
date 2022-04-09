@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -19,6 +20,7 @@ namespace Maths_Game_Prototype
         {
             QuizName = "Mental Maths";
             OperatorCategory = Operators.Generic;
+            TextInputRestriction = new Regex("(^[\\d]{0,2}$)|(^-[\\d]?$)");
         }
 
         /// <summary>
@@ -51,8 +53,6 @@ namespace Maths_Game_Prototype
                 Questions[index] = new Question(questionVariables, expectedAnswer);
             }
 
-            MainWindow.MentalMathsAnsTb.PreviewTextInput -= MainWindow.ThreeDigitPosIntegerTb_OnPreviewTextInput;
-            MainWindow.MentalMathsAnsTb.PreviewTextInput += MainWindow.TwoCharIntegerTb_OnPreviewTextInput;
             MainWindow.MentalMathsAnsTb.Width = 128;
 
             MainWindow.MultiplicationHint.Visibility = Visibility.Collapsed;

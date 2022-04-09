@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -13,6 +14,7 @@ namespace Maths_Game_Prototype.Quizzes
         {
             QuizName = "Multiplication Tables";
             OperatorCategory = Operators.Multiply;
+            TextInputRestriction = new Regex("^[\\d]{0,3}$");
         }
 
         public override void NewGame()
@@ -37,8 +39,6 @@ namespace Maths_Game_Prototype.Quizzes
             MainWindow.MentalMathsOperator.Text = OperatorCategory.Symbol;
             MainWindow.MentalMathsOperator.Foreground = OperatorCategory.Colour;
 
-            MainWindow.MentalMathsAnsTb.PreviewTextInput -= MainWindow.TwoCharIntegerTb_OnPreviewTextInput;
-            MainWindow.MentalMathsAnsTb.PreviewTextInput += MainWindow.ThreeDigitPosIntegerTb_OnPreviewTextInput;
             MainWindow.MentalMathsAnsTb.Width = 192;
 
             ShowQuizLayout(MainWindow.MentalMathsGrid);
