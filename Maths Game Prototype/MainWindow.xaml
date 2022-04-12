@@ -465,6 +465,10 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -473,9 +477,17 @@
 
                         <TextBlock Name="ColumnSubAddXDigit1" Grid.Column="1" Style="{StaticResource BigText}"/>
                         <TextBlock Name="ColumnSubAddXDigit2" Grid.Column="2" Style="{StaticResource BigText}"/>
+                        <TextBlock Name="ColumnSubAddXDigit3" Grid.Column="3" Style="{StaticResource BigText}"/>
+                        <TextBlock Name="ColumnSubAddXDigit4" Grid.Column="4" Style="{StaticResource BigText}"/>
+                        <TextBlock Name="ColumnSubAddXDigit5" Grid.Column="5" Style="{StaticResource BigText}"/>
+                        <TextBlock Name="ColumnSubAddXDigit6" Grid.Column="6" Style="{StaticResource BigText}"/>
 
                         <TextBlock Grid.Row="1" Grid.Column="1" Name="ColumnSubAddYDigit1" Style="{StaticResource BigText}"/>
                         <TextBlock Grid.Row="1" Grid.Column="2" Name="ColumnSubAddYDigit2" Style="{StaticResource BigText}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Name="ColumnSubAddYDigit3" Style="{StaticResource BigText}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="4" Name="ColumnSubAddYDigit4" Style="{StaticResource BigText}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="5" Name="ColumnSubAddYDigit5" Style="{StaticResource BigText}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="6" Name="ColumnSubAddYDigit6" Style="{StaticResource BigText}"/>
 
 
                         <TextBlock Grid.Row="1" Name="ColumnSubAddOperator" Style="{StaticResource BigOperator}" Margin="0 0 16 0"/>
@@ -484,7 +496,7 @@
 
                     <Border BorderThickness="2" CornerRadius="1" Margin="0 0 0 8"/>
 
-                    <TextBox Name="ColumnSubAddAnswerTb" Width="120" Style="{StaticResource BigTbNoUnderscoreRightJustify}"/>
+                    <TextBox Name="ColumnSubAddAnswerTb" Width="256" Style="{StaticResource BigTbNoUnderscoreRightJustify}"/>
                 </StackPanel>
 
                 <StackPanel Name="NumberSequencesArea" Visibility="Collapsed" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -529,16 +541,18 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="2" Name="BusStopDivisor" Margin="0 0 8 0" Style="{StaticResource HugeText}"/>
+                        <TextBlock Grid.Row="2" Name="BusStopDivisor" Margin="0 0 16 0" Style="{StaticResource HugeText}"/>
                         <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" CornerRadius="0"/>
-                        <TextBlock Grid.Row="2" Grid.Column="2" Name="BusStopDividendDigit1" Margin="8 0 4 0" Style="{StaticResource HugeText}"/>
-                        <TextBlock Grid.Row="2" Grid.Column="3" Name="BusStopDividendDigit2" Margin="0 0 4 0" Style="{StaticResource HugeText}"/>
-                        <TextBlock Grid.Row="2" Grid.Column="4" Name="BusStopDividendDigit3" Margin="0 0 4 0" Style="{StaticResource HugeText}"/>
-                        <TextBlock Grid.Row="2" Grid.Column="5" Name="BusStopDividendDigit4" Style="{StaticResource HugeText}"/>
-                        <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" CornerRadius="0"/>
-                        <TextBox Grid.Column="2" Grid.ColumnSpan="4" Name="BusStopAnsTb" Width="288" Margin="0 0 0 4" Style="{StaticResource BigTbNoUnderscoreLeftJustify}"/>
+                        <Rectangle Grid.Row="2" Grid.Column="2" Width="0" Fill="Transparent"/>
+                        <TextBlock Grid.Row="2" Grid.Column="3" Name="BusStopDividendDigit1" Style="{StaticResource HugeText}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="4" Name="BusStopDividendDigit2" Style="{StaticResource HugeText}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="5" Name="BusStopDividendDigit3" Style="{StaticResource HugeText}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="6" Name="BusStopDividendDigit4" Style="{StaticResource HugeText}"/>
+                        <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" CornerRadius="0"/>
+                        <TextBox Grid.Column="2" Grid.ColumnSpan="5" Name="BusStopAnsTb" Width="288" Margin="0 0 0 4" Style="{StaticResource BigTbNoUnderscoreLeftJustify}"/>
                     </Grid>
                 </Grid>
             </Grid>

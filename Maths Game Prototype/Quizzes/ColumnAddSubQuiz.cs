@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Maths_Game_Prototype.Quizzes
@@ -16,7 +17,7 @@ namespace Maths_Game_Prototype.Quizzes
         protected ColumnAddSubQuiz()
         {
             PaperTip = true;
-            TextInputRestriction = new Regex("(^-[\\d]{0,2}$)|(^[\\d]{0,3}$)");
+            TextInputRestriction = new Regex("(^-[\\d]{0,6}$)|(^[\\d]{0,7}$)"); //Only allows a 7 digit positive integer or 6 digit negative integer
         }
 
         public override void NewGame()
@@ -28,21 +29,22 @@ namespace Maths_Game_Prototype.Quizzes
                 var questionVariables = new Dictionary<string, dynamic>();
                 var expectedAnswer = new Dictionary<string, string>();
 
-                var x = Randoms.Next(0, 100);
-                var y = Randoms.Next(0, 100);
+                //Generates two positive 6-digit integers
+                var x = Randoms.Next(0, 1000000);
+                var y = Randoms.Next(0, 1000000);
 
                 questionVariables.Add("x", x);
                 questionVariables.Add("y", y);
 
-                var result = IsAddition ? x + y : x - y;
+                var result = IsAddition ? x + y : x - y; //Adds two numbers together for result if operation is addition, else it subtracts y from x and stores as result.
 
                 expectedAnswer.Add("ans", result.ToString());
 
                 Questions[index] = new Question(questionVariables, expectedAnswer);
             }
 
-            MainWindow.ColumnSubAddOperator.Text = IsAddition ? Operators.Plus.Symbol : Operators.Minus.Symbol;
-            MainWindow.ColumnSubAddOperator.Foreground = IsAddition ? Operators.Plus.Colour : Operators.Minus.Colour;
+            MainWindow.ColumnSubAddOperator.Text = IsAddition ? Operators.Plus.Symbol : Operators.Minus.Symbol; //Sets operator in UI to plus or minus depending on the operation
+            MainWindow.ColumnSubAddOperator.Foreground = IsAddition ? Operators.Plus.Colour : Operators.Minus.Colour; //Sets operator colour in UI to plus or minus colour depending on the operation
 
             ShowQuizLayout(MainWindow.ColumnSubAddArea);
             DisplayQuestion();
@@ -54,32 +56,53 @@ namespace Maths_Game_Prototype.Quizzes
 
             var currentQuestion = Questions[QuestionNumber];
 
-            var numXToString = currentQuestion.QuestionVariables["x"].ToString();
-            var numYToString = currentQuestion.QuestionVariables["y"].ToString();
+            var numXYToString = new[] //The values of X and Y are stored in index 0 and index 1 of this array respectively
+            {
+                currentQuestion.QuestionVariables["x"].ToString(),
+                currentQuestion.QuestionVariables["y"].ToString()
+            };
 
-            if (numXToString.Length == 1)
+            //Stores the textboxes for each digit of X and Y
+            //The textboxes for digits of X and textboxes for digits of Y are stored in index 0 and index 1 of this array respectively.
+            var numXYDigits = new[]
             {
-                MainWindow.ColumnSubAddXDigit1.Text = string.Empty;
-                MainWindow.ColumnSubAddXDigit2.Text = numXToString[0].ToString();
-            }
-            else
+                new[]
+                {
+                    MainWindow.ColumnSubAddXDigit1,
+                    MainWindow.ColumnSubAddXDigit2,
+                    MainWindow.ColumnSubAddXDigit3,
+                    MainWindow.ColumnSubAddXDigit4,
+                    MainWindow.ColumnSubAddXDigit5,
+                    MainWindow.ColumnSubAddXDigit6
+                },
+                new[]
+                {
+                    MainWindow.ColumnSubAddYDigit1,
+                    MainWindow.ColumnSubAddYDigit2,
+                    MainWindow.ColumnSubAddYDigit3,
+                    MainWindow.ColumnSubAddYDigit4,
+                    MainWindow.ColumnSubAddYDigit5,
+                    MainWindow.ColumnSubAddYDigit6
+                }
+            };
+
+            //Fills textboxes representing digits with digits from the questions X and Y variables
+            for (var numberIndex = 0; numberIndex < numXYToString.Length; numberIndex++)
             {
-                MainWindow.ColumnSubAddXDigit1.Text = numXToString[0].ToString();
-                MainWindow.ColumnSubAddXDigit2.Text = numXToString[1].ToString();
+                foreach (var digit in numXYDigits[numberIndex]) //Collapses all digit textboxes in case some aren't used
+                    digit.Visibility = Visibility.Collapsed;
+
+                var emptyDigits = numXYDigits[numberIndex].Length - numXYToString[numberIndex].Length; //Gets the number of empty digits in the number
+
+                //Shows digit textboxes that are needed to represent the number, and adds text representing each digit to each digit textbox
+                for (var digitIndex = numXYDigits[numberIndex].Length - 1; digitIndex >= emptyDigits; digitIndex--)
+                {
+                    numXYDigits[numberIndex][digitIndex].Visibility = Visibility.Visible;
+                    numXYDigits[numberIndex][digitIndex].Text = numXYToString[numberIndex][digitIndex - emptyDigits].ToString();
+                }
             }
 
-            if (numYToString.Length == 1)
-            {
-                MainWindow.ColumnSubAddYDigit1.Text = string.Empty;
-                MainWindow.ColumnSubAddYDigit2.Text = numYToString[0].ToString();
-            }
-            else
-            {
-                MainWindow.ColumnSubAddYDigit1.Text = numYToString[0].ToString();
-                MainWindow.ColumnSubAddYDigit2.Text = numYToString[1].ToString();
-            }
-
-            MainWindow.ColumnSubAddAnswerTb.Text = string.Empty;
+            MainWindow.ColumnSubAddAnswerTb.Text = string.Empty; //Empties the user input textbox
         }
 
         protected override void LockQuestion(bool locked)
