@@ -37,7 +37,9 @@ namespace Maths_Game_Prototype
             new ColumnSubtractionQuiz(),
             new NumberSequencesQuiz(),
             new MultiplicationTablesQuiz(),
-            new BusStopDivisionQuiz()
+            new BusStopDivisionQuiz(),
+            new RoundingQuiz(),
+
         };
 
         #endregion

@@ -555,6 +555,18 @@
                         <TextBox Grid.Column="2" Grid.ColumnSpan="5" Name="BusStopAnsTb" Width="288" Margin="0 0 0 4" Style="{StaticResource BigTbNoUnderscoreLeftJustify}"/>
                     </Grid>
                 </Grid>
+
+                <StackPanel Name="RoundingArea" Visibility="Collapsed" VerticalAlignment="Center" Margin="32 0">
+                    <TextBlock Style="{StaticResource MediumText}" TextWrapping="Wrap" TextAlignment="Center">
+                        <Run Text="What is"/>
+                        <Run Name="UnroundedNumTxt" FontFamily="{StaticResource ComicNeue-Bold}"/>
+                        <Run Text="rounded to the nearest"/>
+                        <Run Name="RoundToNumTxt" FontFamily="{StaticResource ComicNeue-Bold}"/><!--
+                        --><Run Name="WholeNumberTxt" Text="whole number"/><!--
+                        --><Run Text="?"/>
+                    </TextBlock>
+                    <TextBox Margin="0 16 0 0" Name="RoundingInputTb" Width="128"/>
+                </StackPanel>
             </Grid>
 
             <Grid Grid.Row="2" Margin="8">
