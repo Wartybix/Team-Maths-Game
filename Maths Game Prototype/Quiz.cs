@@ -27,6 +27,8 @@ namespace Maths_Game_Prototype
         /// Adds questions to the quiz (in derived classes)
         /// Sets up UI for the quiz (in derived classes)
         /// Sets up new Random variable to set random variables in questions.
+        /// Shows quiz-specific UI elements like score.
+        /// Sets background colour to yellow.
         /// </summary>
         public virtual void NewGame()
         {
@@ -37,21 +39,23 @@ namespace Maths_Game_Prototype
 
             if (MainWindow == null) return;
 
-            MainWindow.QuizNameTxt.Text = QuizName;
+            MainWindow.GameNameTxt.Text = QuizName;
+            MainWindow.GameInstance.Background = Backgrounds.QuizBackground;
             MainWindow.TitleColour.Background = OperatorCategory.LightColour;
             MainWindow.PaperTip.Visibility = PaperTip ? Visibility.Visible : Visibility.Collapsed;
+            MainWindow.ScoreArea.Visibility = Visibility.Visible;
             MainWindow.ResetScore();
         }
         
         /// <summary>
-        /// Hides the previous quiz's layout.
+        /// Hides the previous quiz/minigame's layout.
         /// Displays the current quiz's layout.
         /// </summary>
         /// <param name="layout"></param>
         protected void ShowQuizLayout(dynamic layout)
         {
-            if (MainWindow.CurrentQuizLayout != null) MainWindow.CurrentQuizLayout.Visibility = Visibility.Collapsed;
-            MainWindow.CurrentQuizLayout = layout;
+            if (MainWindow.CurrentGameLayout != null) MainWindow.CurrentGameLayout.Visibility = Visibility.Collapsed;
+            MainWindow.CurrentGameLayout = layout;
             layout.Visibility = Visibility.Visible;
         }
 

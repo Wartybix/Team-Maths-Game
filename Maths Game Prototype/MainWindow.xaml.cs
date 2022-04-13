@@ -26,7 +26,7 @@ namespace Maths_Game_Prototype
 
         private Grid _currentlyOpenMenu; //Holds the menu currently visible
         private Quiz _currentQuiz; //Holds the quiz currently in progress.
-        public dynamic CurrentQuizLayout; //Holds the layout of the current quiz.
+        public dynamic CurrentGameLayout; //Holds the layout of the current quiz.
         public SoundPlayer SoundPlayer = new SoundPlayer(); //Plays a .wav file asynchronously while the rest of the program executes.
         public int Score; //Holds the user's current score in a given quiz.
         private readonly Quiz[] _quizzes =
@@ -157,7 +157,7 @@ namespace Maths_Game_Prototype
         {
             var buttonClicked = (Button)sender;
 
-            TransitionTo(QuizInstance);
+            TransitionTo(GameInstance);
             _currentQuiz = (Quiz)buttonClicked.Tag;
             _currentQuiz.NewGame();
         }
@@ -199,7 +199,7 @@ namespace Maths_Game_Prototype
         private void Replay_OnClick(object sender, RoutedEventArgs e)
         {
             SoundPlayer.Stop();
-            TransitionTo(QuizInstance);
+            TransitionTo(GameInstance);
             _currentQuiz.NewGame();
         }
 

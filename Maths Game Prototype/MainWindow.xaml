@@ -401,7 +401,7 @@
 
         </Grid>
 
-        <Grid Name="QuizInstance" Background="#F8FAB1" Visibility="Collapsed" KeyDown="QuizInstance_OnKeyDown" PreviewKeyDown="QuizInstance_OnPreviewKeyDown">
+        <Grid Name="GameInstance" Visibility="Collapsed" KeyDown="QuizInstance_OnKeyDown" PreviewKeyDown="QuizInstance_OnPreviewKeyDown">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -419,11 +419,11 @@
                     </Button>
 
                     <Border Name="TitleColour" BorderBrush="Transparent" Margin="4 0 0 0" Background="#99E88C">
-                        <TextBlock Name="QuizNameTxt" Padding="8 0"/>
+                        <TextBlock Name="GameNameTxt" Padding="8 0"/>
                     </Border>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel Name="ScoreArea" Orientation="Horizontal" HorizontalAlignment="Right">
                     <ContentPresenter Content="{StaticResource StarSprite}" Width="18" Margin="0 0"/>
 
                     <TextBlock Style="{StaticResource IconBtnText}" Text="Score: "/>
