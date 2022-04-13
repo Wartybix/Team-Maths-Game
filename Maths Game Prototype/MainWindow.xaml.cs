@@ -39,7 +39,7 @@ namespace Maths_Game_Prototype
             new MultiplicationTablesQuiz(),
             new BusStopDivisionQuiz(),
             new RoundingQuiz(),
-
+            new RoundingDecimalsQuiz()
         };
 
         #endregion

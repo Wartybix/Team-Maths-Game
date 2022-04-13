@@ -28,7 +28,7 @@ namespace Maths_Game_Prototype.Quizzes
                 var questionVariables = new Dictionary<string, dynamic>();
                 var expectedAnswer = new Dictionary<string, string>();
 
-                var unroundedNumber = Randoms.Next(0, 9500); //Unrounded number can be between 0 and 9500
+                double unroundedNumber = Randoms.Next(0, 9500); //Unrounded number can be between 0 and 9500
                 double roundedNumber; //For the rounded number
 
                 if (IntegerRounding) //If playing rounding quiz, and NOT decimal rounding quiz
@@ -40,7 +40,7 @@ namespace Maths_Game_Prototype.Quizzes
                 else
                 {
                     unroundedNumber /= 10; //Divides the unrounded number by 10, adding a digit after the decimal place.
-                    roundedNumber = Math.Round((double)unroundedNumber); //Rounds the unrounded number to nearest integer
+                    roundedNumber = Math.Round(unroundedNumber, MidpointRounding.AwayFromZero); //Rounds the unrounded number to nearest integer
                 }
 
                 questionVariables.Add("unroundedNum", unroundedNumber);
