@@ -363,7 +363,7 @@ namespace Maths_Game_Prototype
 
         /// <summary>
         /// Enter key checks the current question's answer when pressed.
-        /// Alternatively, advances to next question if answer is already displayed.
+        /// Alternatively, advances to next question if answer is already displayed and the quiz can be advanced.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -373,13 +373,14 @@ namespace Maths_Game_Prototype
 
             if (AnswerRevealArea.Visibility == Visibility.Visible)
                 NextQuestion();
-            else
+            else if (_currentQuiz.CanAdvance)
                 _currentQuiz.CheckAnswer();
         }
 
         /// <summary>
         /// Checks whether the input of given textbox (sender) matches the regular expression of the current quiz's text restriction
         /// If it does not match the regex, the character the user entered won't be added.
+        /// If the character does match the regex, the question can now be advanced.
         /// </summary>
         /// <param name="sender">The textbox the user has written into</param>
         /// <param name="e">The value of what the user has typed</param>
@@ -392,6 +393,11 @@ namespace Maths_Game_Prototype
             writtenText = writtenText.Insert(textBox.CaretIndex, e.Text); //Inserts the character the user has typed into the position of the text where the caret is.
 
             e.Handled = !_currentQuiz.TextInputRestriction.IsMatch(writtenText); //Adds character if the textbox's text matches the text input restriction regex of the current quiz.
+
+            if (e.Handled) return;
+
+            _currentQuiz.CanAdvance = true;
+            CheckAnsBtn.IsEnabled = true;
         }
 
         /// <summary>

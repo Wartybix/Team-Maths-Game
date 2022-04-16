@@ -21,7 +21,7 @@ namespace Maths_Game_Prototype
         protected MainWindow MainWindow; //References the MainWindow.
         protected bool PaperTip = false; //True if 'do workings on paper' tip is shown in quiz.
         public Regex TextInputRestriction; //Holds regex for allowed characters in textboxes of a child quiz (specified in constructors of children)
-
+        public bool CanAdvance { get; set; } //Holds whether the question can be advanced to next question or not.
 
         /// <summary>
         /// Adds questions to the quiz (in derived classes)
@@ -88,6 +88,8 @@ namespace Maths_Game_Prototype
             MainWindow.AnswerRevealArea.Visibility = Visibility.Collapsed;
             MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
             LockQuestion(false);
+            CanAdvance = false;
+            MainWindow.CheckAnsBtn.IsEnabled = false;
         }
 
         /// <summary>
