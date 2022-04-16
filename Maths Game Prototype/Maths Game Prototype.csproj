@@ -10,6 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Buckets\bucket-ball1.cur" />
+    <None Remove="Buckets\bucket-ball2.cur" />
+    <None Remove="Buckets\bucket-ball3.cur" />
+    <None Remove="Buckets\bucket-ball4.cur" />
+    <None Remove="Buckets\bucket-face.cur" />
+    <None Remove="Buckets\bucket-grass.cur" />
+    <None Remove="Buckets\bucket-sky.cur" />
+    <None Remove="Buckets\bucket-sun.cur" />
+    <None Remove="colour-picker.cur" />
     <None Remove="Fonts\ComicNeue-Bold.ttf" />
     <None Remove="Fonts\ComicNeue-Italic.ttf" />
     <None Remove="Fonts\ComicNeue-Regular.ttf" />
@@ -25,6 +34,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Buckets\bucket-ball1.cur" />
+    <Resource Include="Buckets\bucket-ball2.cur" />
+    <Resource Include="Buckets\bucket-ball3.cur" />
+    <Resource Include="Buckets\bucket-ball4.cur" />
+    <Resource Include="Buckets\bucket-face.cur" />
+    <Resource Include="Buckets\bucket-grass.cur" />
+    <Resource Include="Buckets\bucket-sky.cur" />
+    <Resource Include="Buckets\bucket-sun.cur" />
+    <Resource Include="colour-picker.cur" />
     <Resource Include="Fonts\ComicNeue-Bold.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

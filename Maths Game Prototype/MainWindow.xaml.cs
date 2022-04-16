@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Media;
 using System.Reflection;
@@ -7,12 +8,15 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-//using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows.Shapes;
+using Maths_Game_Prototype.Minigames;
 using Maths_Game_Prototype.Quizzes;
 using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 using KeyEventHandler = System.Windows.Input.KeyEventHandler;
+using Path = System.Windows.Shapes.Path;
 
 namespace Maths_Game_Prototype
 {
@@ -26,10 +30,11 @@ namespace Maths_Game_Prototype
 
         private Grid _currentlyOpenMenu; //Holds the menu currently visible
         private Quiz _currentQuiz; //Holds the quiz currently in progress.
+        private Minigame _currentMinigame; //Holds the minigame currently in progress.
         public dynamic CurrentGameLayout; //Holds the layout of the current quiz.
         public SoundPlayer SoundPlayer = new SoundPlayer(); //Plays a .wav file asynchronously while the rest of the program executes.
         public int Score; //Holds the user's current score in a given quiz.
-        private readonly Quiz[] _quizzes =
+        private readonly Quiz[] _quizzes = //Holds all playable quizzes
         {
             new WordsToDigitsQuiz(),
             new MentalMathsQuiz(),
@@ -40,6 +45,11 @@ namespace Maths_Game_Prototype
             new BusStopDivisionQuiz(),
             new RoundingQuiz(),
             new RoundingDecimalsQuiz()
+        };
+
+        private readonly Minigame[] _minigames = //Holds all playable minigames
+        {
+            new ColourByNumbersMinigame()
         };
 
         #endregion
@@ -53,7 +63,7 @@ namespace Maths_Game_Prototype
             InitializeComponent();
 
             _currentlyOpenMenu = WelcomeScreen;
-            LoadQuizzes();
+            LoadGames();
         }
 
         #region Menu logic
@@ -71,20 +81,37 @@ namespace Maths_Game_Prototype
             _currentlyOpenMenu = destinationMenu;
         }
 
-        private void LoadQuizzes()
+        /// <summary>
+        /// Loads and displays all quizzes and minigames as buttons on the main menu.
+        /// </summary>
+        private void LoadGames()
         {
-            foreach (var quiz in _quizzes)
+            foreach (var quiz in _quizzes) //Displays all quizzes as buttons
             {
-                var quizBtn = new Button
+                var quizBtn = new Button //Creates a new button
                 {
-                    Content = new TextBlock() {Text = quiz.QuizName},
-                    Style = (Style)Resources["ListBtn"],
-                    Tag = quiz
+                    Content = new TextBlock {Text = quiz.QuizName}, //Sets button text to quiz name
+                    Style = (Style)Resources["ListBtn"], //Sets button style appropriate for lists.
+                    Tag = quiz //Sets an instance of the quiz as the button's tag
                 };
 
-                quizBtn.Click += QuizBtn_OnClick;
+                quizBtn.Click += QuizBtn_OnClick; //Allows user to start associated quiz when button is clicked
 
-                QuizSelector.Children.Add(quizBtn);
+                QuizSelector.Children.Add(quizBtn); //Adds button to the quiz stackpanel.
+            }
+
+            foreach (var minigame in _minigames) //Displays all minigames as buttons
+            {
+                var minigameBtn = new Button //Creates a new button
+                {
+                    Content = new TextBlock {Text = minigame.GameName}, //Sets button text to minigame name
+                    Style = (Style) Resources["ListBtn"], //Sets button style appropriate for lists.
+                    Tag = minigame //Sets an instance of the minigame as the button's tag
+                };
+
+                minigameBtn.Click += MinigameBtn_OnClick; //Allows user to start associated minigame when button is clicked
+
+                MinigameSelector.Children.Add(minigameBtn); //Adds button to the quiz stackpanel.
             }
         }
 
@@ -153,13 +180,35 @@ namespace Maths_Game_Prototype
         #endregion
 
         #region OnClicks
+
+        /// <summary>
+        /// Plays the quiz associated with the button pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void QuizBtn_OnClick(object sender, RoutedEventArgs e)
         {
             var buttonClicked = (Button)sender;
 
             TransitionTo(GameInstance);
+            _currentMinigame = null;
             _currentQuiz = (Quiz)buttonClicked.Tag;
             _currentQuiz.NewGame();
+        }
+
+        /// <summary>
+        /// Plays the minigame associated with the button press.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MinigameBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var buttonClicked = (Button)sender;
+
+            TransitionTo(GameInstance);
+            _currentQuiz = null;
+            _currentMinigame = (Minigame)buttonClicked.Tag;
+            _currentMinigame.NewGame();
         }
 
         private void Ks2Btn_OnClick(object sender, RoutedEventArgs e)
@@ -171,36 +220,88 @@ namespace Maths_Game_Prototype
             TransitionTo(QuizMenu);
         }
 
+        /// <summary>
+        /// Goes back to the welcome screen from the main menu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void QuizBackBtn_OnClick(object sender, RoutedEventArgs e)
         {
             TransitionTo(WelcomeScreen);
         }
 
+        /// <summary>
+        /// Goes to the main menu from the welcome screen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WelcomeBtn_OnClick(object sender, RoutedEventArgs e)
         {
             TransitionTo(QuizMenu);
         }
 
+        /// <summary>
+        /// Goes back to the main menu from a quiz instance.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitQuizBtn_OnClick(object sender, RoutedEventArgs e)
         {
             SoundPlayer.Stop();
             TransitionTo(QuizMenu);
         }
 
+        /// <summary>
+        /// Transitions to the next question in a quiz.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextQBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            NextQuestion();
+            if (_currentQuiz != null)
+                NextQuestion();
+            else if (_currentMinigame != null)
+            {
+                TransitionTo(QuizMenu);
+                SoundPlayer.Stop();
+            }
         }
 
+        /// <summary>
+        /// Checks if the given answer(s) is correct when pressed and displays the result.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CheckAnsBtn_OnClick(object sender, RoutedEventArgs e)
         {
             _currentQuiz.CheckAnswer();
         }
+
+        /// <summary>
+        /// Restarts the current quiz when pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Replay_OnClick(object sender, RoutedEventArgs e)
         {
             SoundPlayer.Stop();
             TransitionTo(GameInstance);
             _currentQuiz.NewGame();
+        }
+
+        /// <summary>
+        /// Fills the user's bucket with the colour clicked on in the colour by numbers key.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SelectColour(object sender, MouseButtonEventArgs e)
+        {
+            var keyBtn = sender as Border;
+            var cBNGame = _currentMinigame as ColourByNumbersMinigame;
+
+            cBNGame.SelectedColour = keyBtn.Background as SolidColorBrush; //Gets background colour of selected paint pot.
+            CateBackground.Cursor = new Cursor(Application.GetResourceStream(new Uri($"Buckets/bucket-{cBNGame.PaintPots[keyBtn]}.cur", UriKind.Relative)).Stream);
+                //Sets cursor to paint bucket icon associated with the paint pot clicked on.
         }
 
         #endregion
@@ -263,5 +364,21 @@ namespace Maths_Game_Prototype
         }
 
         #endregion
+
+        /// <summary>
+        /// Fills the shape in the picture clicked on with the currently selected colour.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SetShapeColour(object sender, MouseButtonEventArgs e)
+        {
+            var shape = sender as Path;
+            var cBNGame = _currentMinigame as ColourByNumbersMinigame;
+
+            if (cBNGame.SelectedColour == null) return; //Leaves procedure if there is no colour selected.
+
+            shape.Fill = cBNGame.SelectedColour; //Fills the shape clicked on with the selected colour.
+            cBNGame.CheckColours(); //Checks to see if all shapes in picture are of the correct colour.
+        }
     }
 }
