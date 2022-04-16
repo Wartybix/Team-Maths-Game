@@ -49,6 +49,8 @@ namespace Maths_Game_Prototype
             new PrimeCompositeNumbersQuiz(),
             new SquaringQuiz(),
             new CubingQuiz(),
+            new HcfQuiz(),
+            new LcmQuiz(),
             new AlgebraQuiz()
         };
 

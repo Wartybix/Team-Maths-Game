@@ -911,6 +911,20 @@
                         <Button Name="CompositeBtn" Content="Composite" Margin="4 0" Click="CompositeBtn_OnClick" Style="{StaticResource PinkBtn}"/>
                     </StackPanel>
                 </StackPanel>
+
+                <StackPanel Name="CommonNumbersArea" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                    <TextBlock Style="{StaticResource MediumText}" TextWrapping="Wrap" TextAlignment="Center" Margin="96 0">
+                        <Run Text="What is the"/>
+                        <Run Name="CommonNumbersLcmHcfText"/>
+                        <Run Text="of"/>
+                        <Run Name="CommonNumbersATxt" FontFamily="{StaticResource ComicNeue-Bold}"/>
+                        <Run Text="and"/>
+                        <Run Name="CommonNumbersBTxt" FontFamily="{StaticResource ComicNeue-Bold}"/><!--
+                        --><Run Text="?"/>
+                    </TextBlock>
+
+                    <TextBox Name="CommonNumbersTb" Style="{StaticResource BigTb}" Margin="0 8 0 0" Width="192"/>
+                </StackPanel>
             </Grid>
 
             <Grid Grid.Row="2" Margin="8">
