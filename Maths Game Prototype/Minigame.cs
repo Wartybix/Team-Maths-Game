@@ -37,7 +37,7 @@ namespace Maths_Game_Prototype
             MainWindow.PaperTip.Visibility = Visibility.Collapsed; //Hides 'do your workings on paper' tip
             MainWindow.CheckAnsBtn.Visibility = Visibility.Collapsed; //Hides the 'Check' button
             MainWindow.AnswerRevealArea.Visibility = Visibility.Collapsed; //Hides the answer reveal area
-            MainWindow.MinigameTooltip.Visibility = Visibility.Visible; //Shows the minigame's instructions.
+            MainWindow.MinigameTooltipArea.Visibility = Visibility.Visible; //Shows the minigame's instructions.
         }
 
         /// <summary>

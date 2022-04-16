@@ -463,13 +463,13 @@
             </Grid>
 
             <Grid Grid.Row="1">
-                <Grid Name="ColourByNumbersGrid" Margin="8" Visibility="Collapsed">
+                <Grid Name="ColourByNumbersGrid" Margin="8" Visibility="Collapsed" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Border Name="CateBackground" Background="White">
+                    <Border Name="CateBackground" BorderThickness="2" Background="White" Margin="0 0 64 0">
                         <Viewbox Stretch="Uniform">
                             <Canvas Width="266" Height="160">
                                 <Canvas.RenderTransform>
@@ -871,8 +871,14 @@
                     </StackPanel>
                     <Button Name="CheckAnsBtn" Click="CheckAnsBtn_OnClick" Content="Check!"/>
                 </StackPanel>
-                
-                <TextBlock Name="MinigameTooltip" TextWrapping="Wrap" TextAlignment="Center"/>
+
+                <Grid Name="MinigameTooltipArea" HorizontalAlignment="Center" Height="Auto" Margin="0 0 0 8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" Name="MinigameTooltip" Width="640" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Left"/>
+                </Grid>
 
                 <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Visible">
                     <Grid>
