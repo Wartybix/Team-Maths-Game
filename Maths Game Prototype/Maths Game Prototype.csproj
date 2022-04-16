@@ -23,6 +23,7 @@
     <None Remove="Fonts\ComicNeue-Bold.ttf" />
     <None Remove="Fonts\ComicNeue-Italic.ttf" />
     <None Remove="Fonts\ComicNeue-Regular.ttf" />
+    <None Remove="Images\cbn-preview.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +54,7 @@
     <Resource Include="Fonts\ComicNeue-Regular.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\cbn-preview.png" />
   </ItemGroup>
 
   <ItemGroup>

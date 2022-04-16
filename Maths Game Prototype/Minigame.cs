@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ namespace Maths_Game_Prototype
         public string GameName { get; set; } //The name of the minigame
         protected Random Randoms; //Holds random values for minigames to use
         protected MainWindow MainWindow; //Allows access to UI elements within this class
-        protected string Tooltip; //Holds the written instructions for the minigame for the user to read
+        public string Tooltip; //Holds the written instructions for the minigame for the user to read
+        public string PreviewImgName { get; set; } //Name of image for minigame thumbnail displayed in main menu.
 
         /// <summary>
         /// Sets title in upper corner of minigame to minigame title.

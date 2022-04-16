@@ -28,6 +28,7 @@ namespace Maths_Game_Prototype.Minigames
         {
             GameName = "Colour by Numbers";
             Tooltip = "Click the numbers on the right to fill your bucket, then paint onto the picture.";
+            PreviewImgName = "cbn";
         }
 
         /// <summary>

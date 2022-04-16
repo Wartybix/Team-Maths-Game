@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Maths_Game_Prototype.Minigames;
 using Maths_Game_Prototype.Quizzes;
@@ -102,19 +103,71 @@ namespace Maths_Game_Prototype
                 QuizSelector.Children.Add(quizBtn); //Adds button to the quiz stackpanel.
             }
 
-            foreach (var minigame in _minigames) //Displays all minigames as buttons
+            foreach (var minigame in _minigames)
             {
-                var minigameBtn = new Button //Creates a new button
+                var border = new Border()
                 {
-                    Content = new TextBlock {Text = minigame.GameName}, //Sets button text to minigame name
-                    Style = (Style) Resources["ListBtn"], //Sets button style appropriate for lists.
-                    Tag = minigame //Sets an instance of the minigame as the button's tag
+                    //BorderBrush = new SolidColorBrush(Colors.Transparent),
+                    Margin = new Thickness(0, 2, 0, 2),
+                    Background = new SolidColorBrush(Colors.LightGray)
+                };
+            
+                var frameSp = new StackPanel();
+                border.Child = frameSp;
+
+                var infoCard = new StackPanel()
+                {
+                    Margin = new Thickness(8)
                 };
 
-                minigameBtn.Click += MinigameBtn_OnClick; //Allows user to start associated minigame when button is clicked
+                frameSp.Children.Add(new Image
+                {
+                    Source = new BitmapImage(new Uri("/Images/cbn-preview.png", UriKind.Relative))
+                });
 
-                MinigameSelector.Children.Add(minigameBtn); //Adds button to the quiz stackpanel.
+                frameSp.Children.Add(infoCard);
+
+                infoCard.Children.Add(new TextBlock
+                {
+                    Text = minigame.GameName,
+                    Style = Resources["SmallText"] as Style,
+                    FontFamily = Resources["ComicNeue-Bold"] as FontFamily,
+                });
+                infoCard.Children.Add(new TextBlock
+                {
+                    Text = minigame.Tooltip,
+                    Style = Resources["SmallText"] as Style,
+                    TextWrapping = TextWrapping.Wrap,
+                    TextAlignment = TextAlignment.Center
+                });
+
+                var playBtn = new Button
+                {
+                    Content = new TextBlock {Text = "Play!"},
+                    Tag = minigame,
+                    Margin = new Thickness(0, 8, 0, 0)
+                };
+
+                playBtn.Click += MinigameBtn_OnClick;
+
+                infoCard.Children.Add(playBtn);
+
+                MinigameSelector.Children.Add(border);
             }
+
+            //foreach (var minigame in _minigames) //Displays all minigames as buttons
+            //{
+            //    var minigameBtn = new Button //Creates a new button
+            //    {
+            //        Content = new TextBlock {Text = minigame.GameName}, //Sets button text to minigame name
+            //        Style = (Style) Resources["ListBtn"], //Sets button style appropriate for lists.
+            //        Tag = minigame //Sets an instance of the minigame as the button's tag
+            //    };
+            //
+            //    minigameBtn.Click += MinigameBtn_OnClick; //Allows user to start associated minigame when button is clicked
+            //
+            //    MinigameSelector.Children.Add(minigameBtn); //Adds button to the quiz stackpanel.
+            //}
         }
 
         #endregion
