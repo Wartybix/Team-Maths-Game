@@ -332,6 +332,11 @@
             <Setter Property="CornerRadius" Value="24"/>
             <Setter Property="Cursor" Value=""></Setter>
             <EventSetter Event="MouseUp" Handler="SelectColour"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="DimGray"></Setter>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style TargetType="{x:Type Button}">
