@@ -849,6 +849,15 @@
                     </TextBlock>
                     <TextBox Margin="0 16 0 0" Name="RoundingInputTb" Width="128"/>
                 </StackPanel>
+
+                <StackPanel Name="PowersArea" Orientation="Horizontal" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource HugeText}">
+                        <Run Name="PowersBase"/><!--
+                        --><Run Name="PowersExponent"/>
+                    </TextBlock>
+                    <TextBlock Text="=" Style="{StaticResource HugeText}"/>
+                    <TextBox Name="PowersTb" Width="256" Style="{StaticResource HugeTb}"/>
+                </StackPanel>
             </Grid>
 
             <Grid Grid.Row="2" Margin="8">

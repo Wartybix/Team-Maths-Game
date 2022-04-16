@@ -44,7 +44,9 @@ namespace Maths_Game_Prototype
             new MultiplicationTablesQuiz(),
             new BusStopDivisionQuiz(),
             new RoundingQuiz(),
-            new RoundingDecimalsQuiz()
+            new RoundingDecimalsQuiz(),
+            new SquaringQuiz(),
+            new CubingQuiz()
         };
 
         private readonly Minigame[] _minigames = //Holds all playable minigames
