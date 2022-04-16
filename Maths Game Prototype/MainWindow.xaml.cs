@@ -47,7 +47,8 @@ namespace Maths_Game_Prototype
             new RoundingQuiz(),
             new RoundingDecimalsQuiz(),
             new SquaringQuiz(),
-            new CubingQuiz()
+            new CubingQuiz(),
+            new AlgebraQuiz()
         };
 
         private readonly Minigame[] _minigames = //Holds all playable minigames
@@ -154,20 +155,6 @@ namespace Maths_Game_Prototype
 
                 MinigameSelector.Children.Add(border);
             }
-
-            //foreach (var minigame in _minigames) //Displays all minigames as buttons
-            //{
-            //    var minigameBtn = new Button //Creates a new button
-            //    {
-            //        Content = new TextBlock {Text = minigame.GameName}, //Sets button text to minigame name
-            //        Style = (Style) Resources["ListBtn"], //Sets button style appropriate for lists.
-            //        Tag = minigame //Sets an instance of the minigame as the button's tag
-            //    };
-            //
-            //    minigameBtn.Click += MinigameBtn_OnClick; //Allows user to start associated minigame when button is clicked
-            //
-            //    MinigameSelector.Children.Add(minigameBtn); //Adds button to the quiz stackpanel.
-            //}
         }
 
         #endregion

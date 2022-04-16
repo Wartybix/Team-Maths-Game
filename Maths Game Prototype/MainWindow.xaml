@@ -858,6 +858,16 @@
                     <TextBlock Text="=" Style="{StaticResource HugeText}"/>
                     <TextBox Name="PowersTb" Width="256" Style="{StaticResource HugeTb}"/>
                 </StackPanel>
+
+                <StackPanel Name="AlgebraArea" Orientation="Horizontal" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Name="AlgebraXTxt" Style="{StaticResource HugeText}"/>
+                    <TextBox Name="AlgebraXTb" Style="{StaticResource HugeTb}"/>
+                    <TextBlock Name="AlgebraOperator" Style="{StaticResource HugeOperator}"/>
+                    <TextBlock Name="AlgebraYTxt" Style="{StaticResource HugeText}"/>
+                    <TextBox Name="AlgebraYTb" Style="{StaticResource HugeTb}"/>
+                    <TextBlock Text="=" Style="{StaticResource HugeText}"/>
+                    <TextBlock Name="AlgebraAnsTxt" Style="{StaticResource HugeText}"/>
+                </StackPanel>
             </Grid>
 
             <Grid Grid.Row="2" Margin="8">
