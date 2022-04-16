@@ -106,7 +106,7 @@ namespace Maths_Game_Prototype
 
             foreach (var minigame in _minigames)
             {
-                var border = new Border()
+                var border = new Border
                 {
                     //BorderBrush = new SolidColorBrush(Colors.Transparent),
                     Margin = new Thickness(0, 2, 0, 2),
@@ -116,7 +116,7 @@ namespace Maths_Game_Prototype
                 var frameSp = new StackPanel();
                 border.Child = frameSp;
 
-                var infoCard = new StackPanel()
+                var infoCard = new StackPanel
                 {
                     Margin = new Thickness(8)
                 };
@@ -124,6 +124,12 @@ namespace Maths_Game_Prototype
                 frameSp.Children.Add(new Image
                 {
                     Source = new BitmapImage(new Uri("/Images/cbn-preview.png", UriKind.Relative))
+                });
+
+                frameSp.Children.Add(new Rectangle
+                {
+                    Height = 1,
+                    Fill = new SolidColorBrush(Colors.Gray)
                 });
 
                 frameSp.Children.Add(infoCard);
