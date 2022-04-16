@@ -374,6 +374,37 @@
             </Setter>
         </Style>
 
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" x:Key="PinkBtn">
+            <Setter Property="Background" Value="HotPink"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="1" BorderBrush="Black" CornerRadius="3" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF92C9"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FFB5DA"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" x:Key="ListBtn">
             <Setter Property="Margin" Value="0 2"/>
         </Style>
@@ -867,6 +898,18 @@
                     <TextBox Name="AlgebraYTb" Style="{StaticResource HugeTb}"/>
                     <TextBlock Text="=" Style="{StaticResource HugeText}"/>
                     <TextBlock Name="AlgebraAnsTxt" Style="{StaticResource HugeText}"/>
+                </StackPanel>
+
+                <StackPanel Name="PrimesArea" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                    <TextBlock Style="{StaticResource MediumText}">
+                        <Run Text="Is"/>
+                        <Run Name="PrimesNumberTxt" FontFamily="{StaticResource ComicNeue-Bold}"/>
+                        <Run Text="prime or composite?"/>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 8 0 0">
+                        <Button Name="PrimeBtn" Content="Prime" Margin="4 0" Click="PrimeBtn_OnClick"/>
+                        <Button Name="CompositeBtn" Content="Composite" Margin="4 0" Click="CompositeBtn_OnClick" Style="{StaticResource PinkBtn}"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
 

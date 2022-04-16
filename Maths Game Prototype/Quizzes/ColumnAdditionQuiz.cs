@@ -8,7 +8,7 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal class ColumnAdditionQuiz : ColumnAddSubQuiz
     {
-        public ColumnAdditionQuiz() : base()
+        public ColumnAdditionQuiz()
         {
             QuizName = "Column Addition";
             OperatorCategory = Operators.Plus;

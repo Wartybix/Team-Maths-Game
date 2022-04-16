@@ -44,6 +44,7 @@ namespace Maths_Game_Prototype
             MainWindow.TitleColour.Background = OperatorCategory.LightColour;
             MainWindow.PaperTip.Visibility = PaperTip ? Visibility.Visible : Visibility.Collapsed;
             MainWindow.ScoreArea.Visibility = Visibility.Visible;
+            MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
             MainWindow.MinigameTooltipArea.Visibility = Visibility.Collapsed;
             MainWindow.ResetScore();
         }

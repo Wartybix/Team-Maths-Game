@@ -46,6 +46,7 @@ namespace Maths_Game_Prototype
             new BusStopDivisionQuiz(),
             new RoundingQuiz(),
             new RoundingDecimalsQuiz(),
+            new PrimeCompositeNumbersQuiz(),
             new SquaringQuiz(),
             new CubingQuiz(),
             new AlgebraQuiz()
@@ -433,6 +434,20 @@ namespace Maths_Game_Prototype
 
             shape.Fill = cBNGame.SelectedColour; //Fills the shape clicked on with the selected colour.
             cBNGame.CheckColours(); //Checks to see if all shapes in picture are of the correct colour.
+        }
+
+        private void PrimeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var quiz = _currentQuiz as PrimeCompositeNumbersQuiz;
+            quiz.PrimeSelected = true;
+            quiz.CheckAnswer();
+        }
+
+        private void CompositeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var quiz = _currentQuiz as PrimeCompositeNumbersQuiz;
+            quiz.PrimeSelected = false;
+            quiz.CheckAnswer();
         }
     }
 }
