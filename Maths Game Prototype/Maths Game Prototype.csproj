@@ -7,6 +7,7 @@
 	  <!-->Nullable>disable</Nullable-->
     <UseWPF>true</UseWPF>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <AssemblyName>Quizmatics</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
