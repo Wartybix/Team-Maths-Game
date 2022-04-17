@@ -596,8 +596,11 @@ namespace Maths_Game_Prototype
                 if (strResult.Length <= _calcDisplayMaxLength)
                 {
                     strResult += shavedDigit;
+
+                    var decimalPlacesToRoundTo = strResult.Length - strResult.IndexOf(".") - 2;
+
                     result = Convert.ToDouble(strResult);
-                    result = Math.Round(result, 9, MidpointRounding.AwayFromZero);
+                    result = Math.Round(result, decimalPlacesToRoundTo, MidpointRounding.AwayFromZero);
                     strResult = result.ToString();
                     
                     _calcAcc = result;
