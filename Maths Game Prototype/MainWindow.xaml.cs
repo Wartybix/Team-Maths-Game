@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -30,6 +31,11 @@ namespace Maths_Game_Prototype
         #region Variable initialisation
 
         private Grid _currentlyOpenMenu; //Holds the menu currently visible
+        private Border _currentlyOpenTool; //Holds tool last opened.
+        private string _calcDisplayTxt = string.Empty; //Holds text to be written to calculator display
+        private double _calcAcc; //Holds accumulator for calc.
+        private char? _calcOperator; //Holds operator in use for calc.
+        private readonly int _calcDisplayMaxLength = 9; //Holds maximum number of digits for calculator screen.
         private Quiz _currentQuiz; //Holds the quiz currently in progress.
         private Minigame _currentMinigame; //Holds the minigame currently in progress.
         public dynamic CurrentGameLayout; //Holds the layout of the current quiz.
@@ -71,6 +77,7 @@ namespace Maths_Game_Prototype
 
             _currentlyOpenMenu = WelcomeScreen;
             LoadGames();
+            PopulateNumberGrid();
         }
 
         #region Menu logic
@@ -169,6 +176,49 @@ namespace Maths_Game_Prototype
         #endregion
 
         #region Quiz Logic
+        private void PopulateNumberGrid()
+        {
+            for (int x = 0; x < NumberGrid.RowDefinitions.Count; x++)
+            {
+                for (int y = 0; y < NumberGrid.ColumnDefinitions.Count; y++)
+                {
+                    var border = new Border
+                    {
+                        CornerRadius = new CornerRadius(0),
+                    };
+
+                    border.SetValue(Grid.RowProperty, x);
+                    border.SetValue(Grid.ColumnProperty, y);
+
+                    var numValue = (x * 10) + y;
+
+                    border.Child = new TextBlock
+                    {
+                        Text = numValue.ToString(),
+                        Margin = new Thickness(0, 2, 0, 2),
+                        Width = 32,
+                        TextAlignment = TextAlignment.Center,
+                        Foreground = new SolidColorBrush(numValue % 2 == 0 ? Colors.PaleVioletRed : Colors.SteelBlue),
+                        FontFamily = Resources["ComicNeue-Bold"] as FontFamily
+                    };
+
+                    NumberGrid.Children.Add(border);
+                }
+            }
+        }
+
+        private void SelectTool(Border tool)
+        {
+            if (_currentlyOpenTool != null) _currentlyOpenTool.Visibility = Visibility.Collapsed;
+            if (_currentlyOpenTool == tool && ToolArea.Visibility == Visibility.Visible)
+            {
+                ToolArea.Visibility = Visibility.Collapsed;
+                return;
+            }
+            _currentlyOpenTool = tool;
+            ToolArea.Visibility = Visibility.Visible;
+            tool.Visibility = Visibility.Visible;
+        }
 
         /// <summary>
         /// Sets score to zero and updates score textblock accordingly.
@@ -355,6 +405,29 @@ namespace Maths_Game_Prototype
                 //Sets cursor to paint bucket icon associated with the paint pot clicked on.
         }
 
+        private void PrimeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var quiz = _currentQuiz as PrimeCompositeNumbersQuiz;
+            quiz.PrimeSelected = true;
+            quiz.CheckAnswer();
+        }
+
+        private void CompositeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var quiz = _currentQuiz as PrimeCompositeNumbersQuiz;
+            quiz.PrimeSelected = false;
+            quiz.CheckAnswer();
+        }
+
+        private void CalcToolbarBtn_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SelectTool(CalculatorTool);
+        }
+        private void GridToolbarBtn_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SelectTool(NumberGridTool);
+        }
+
         #endregion
 
         #region KeyPress
@@ -422,6 +495,8 @@ namespace Maths_Game_Prototype
 
         #endregion
 
+        #region Minigame Logic
+
         /// <summary>
         /// Fills the shape in the picture clicked on with the currently selected colour.
         /// </summary>
@@ -438,18 +513,179 @@ namespace Maths_Game_Prototype
             cBNGame.CheckColours(); //Checks to see if all shapes in picture are of the correct colour.
         }
 
-        private void PrimeBtn_OnClick(object sender, RoutedEventArgs e)
+        #endregion
+
+        #region Calc Logic
+
+        public void ResetCalc()
         {
-            var quiz = _currentQuiz as PrimeCompositeNumbersQuiz;
-            quiz.PrimeSelected = true;
-            quiz.CheckAnswer();
+            SetCalcText(string.Empty);
+            _calcDisplayTxt = string.Empty;
+            _calcOperator = null;
+            _calcAcc = 0;
         }
 
-        private void CompositeBtn_OnClick(object sender, RoutedEventArgs e)
+        private string GetCalcText()
         {
-            var quiz = _currentQuiz as PrimeCompositeNumbersQuiz;
-            quiz.PrimeSelected = false;
-            quiz.CheckAnswer();
+            return CalcDisplay.Text;
         }
+
+        private void SetCalcText(string text)
+        {
+            CalcDisplay.Text = text;
+        }
+
+        private bool CalcOverflown()
+        {
+            return GetCalcText() == "Overflow";
+        }
+
+        private void Calculate()
+        {
+            double enteredNumber;
+
+            if (CalcOverflown()) return;
+
+            try
+            {
+                enteredNumber = Convert.ToDouble(GetCalcText());
+            }
+            catch
+            {
+                return;
+            }
+
+            enteredNumber = Convert.ToDouble(GetCalcText());
+
+            if (_calcOperator == null)
+            {
+                _calcDisplayTxt = string.Empty;
+                _calcAcc = enteredNumber;
+                return;
+            }
+
+            double result = 0;
+
+            switch (_calcOperator)
+            {
+                case '+':
+                    result = _calcAcc + enteredNumber;
+                    break;
+                case '-':
+                    result = _calcAcc - enteredNumber;
+                    break;
+                case '*':
+                    result = _calcAcc * enteredNumber;
+                    break;
+                case '/':
+                    result = _calcAcc / enteredNumber;
+                    break;
+            }
+
+            var strResult = result.ToString();
+
+            if (strResult.Length > _calcDisplayMaxLength)
+            {
+                Char shavedDigit = '\0';
+                while (strResult.Length > _calcDisplayMaxLength && strResult.Contains("."))
+                {
+                    shavedDigit = strResult.Last();
+                    strResult = strResult.Remove(strResult.Length - 1, 1);
+                }
+
+                if (strResult.Length <= _calcDisplayMaxLength)
+                {
+                    strResult += shavedDigit;
+                    result = Convert.ToDouble(strResult);
+                    result = Math.Round(result, 9, MidpointRounding.AwayFromZero);
+                    strResult = result.ToString();
+                    
+                    _calcAcc = result;
+                    SetCalcText(strResult);
+                    _calcDisplayTxt = string.Empty;
+                }
+                else
+                {
+                    _calcAcc = 0;
+                    SetCalcText("Overflow");
+                    _calcDisplayTxt = string.Empty;
+                }
+            }
+            else
+            {
+                _calcAcc = result;
+                SetCalcText(strResult);
+                _calcDisplayTxt = string.Empty;
+            }
+
+            _calcOperator = null;
+        }
+
+        private void Digit_OnClick(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var btnTxt = btn.Content.ToString();
+
+            var calcText = _calcDisplayTxt;
+
+            if (calcText.Length >= _calcDisplayMaxLength) return;
+
+            if (calcText == "0" && btnTxt != ".") return;
+
+            if (calcText == string.Empty && btnTxt == ".") return;
+
+            if (calcText.Contains(".") && btnTxt == ".") return;
+
+            _calcDisplayTxt = calcText + btnTxt;
+            SetCalcText(_calcDisplayTxt);
+        }
+
+        private void ModifierBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var btnTxt = (sender as Button).Content.ToString();
+
+            if (btnTxt == "AC")
+            {
+                ResetCalc();
+                return;
+            }
+
+            if (_calcDisplayTxt.Length > 0)
+            {
+                _calcDisplayTxt = _calcDisplayTxt.Remove(_calcDisplayTxt.Length - 1, 1);
+                SetCalcText(_calcDisplayTxt);
+            }
+        }
+
+        private void DivideBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Calculate();
+            _calcOperator = '/';
+        }
+
+        private void MultiplyBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Calculate();
+            _calcOperator = '*';
+        }
+
+        private void AddBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Calculate();
+            _calcOperator = '+';
+        }
+
+        private void SubtractBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Calculate();
+            _calcOperator = '-';
+        }
+
+        private void Equals_OnClick(object sender, RoutedEventArgs e)
+        {
+            Calculate();
+        }
+
+        #endregion
     }
 }

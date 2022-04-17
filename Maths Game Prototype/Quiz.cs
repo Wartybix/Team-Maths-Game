@@ -46,6 +46,8 @@ namespace Maths_Game_Prototype
             MainWindow.ScoreArea.Visibility = Visibility.Visible;
             MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
             MainWindow.MinigameTooltipArea.Visibility = Visibility.Collapsed;
+            MainWindow.ToolArea.Visibility = Visibility.Collapsed; //Hides the tool area.
+            MainWindow.Toolbar.Visibility = Visibility.Visible; //Shows the toolbar.
             MainWindow.ResetScore();
         }
         
@@ -91,6 +93,7 @@ namespace Maths_Game_Prototype
             LockQuestion(false);
             CanAdvance = false;
             MainWindow.CheckAnsBtn.IsEnabled = false;
+            MainWindow.ResetCalc();
         }
 
         /// <summary>
@@ -109,6 +112,7 @@ namespace Maths_Game_Prototype
             MainWindow.CheckAnsBtn.Visibility = Visibility.Collapsed;
             MainWindow.AnswerRevealArea.Visibility = Visibility.Visible;
             LockQuestion(true);
+            MainWindow.ToolArea.Visibility = Visibility.Collapsed;
 
             MainWindow.NextQBtn.Content = new TextBlock()
                 {Text = QuestionNumber == Questions.Length - 1 ? "Finish" : "Next >"};

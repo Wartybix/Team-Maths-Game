@@ -38,6 +38,8 @@ namespace Maths_Game_Prototype
             MainWindow.CheckAnsBtn.Visibility = Visibility.Collapsed; //Hides the 'Check' button
             MainWindow.AnswerRevealArea.Visibility = Visibility.Collapsed; //Hides the answer reveal area
             MainWindow.MinigameTooltipArea.Visibility = Visibility.Visible; //Shows the minigame's instructions.
+            MainWindow.ToolArea.Visibility = Visibility.Collapsed; //Hides the tool area.
+            MainWindow.Toolbar.Visibility = Visibility.Collapsed; //Hides the toolbar.
         }
 
         /// <summary>
