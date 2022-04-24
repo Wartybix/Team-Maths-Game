@@ -27,8 +27,8 @@ namespace Maths_Game_Prototype.Quizzes
                 var questionVariables = new Dictionary<string, dynamic>();
                 var expectedAnswer = new Dictionary<string, string>();
 
-                var x = Randoms.Next(0, 20);
-                var y = Randoms.Next(0, 20);
+                var x = Randoms.Next(1, 20);
+                var y = Randoms.Next(1, 20);
 
                 var ans = 0;
 
