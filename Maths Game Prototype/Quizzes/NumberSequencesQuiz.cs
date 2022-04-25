@@ -12,16 +12,23 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal class NumberSequencesQuiz : Quiz
     {
-        private TextBlock[] _sequenceTextBlocks;
-        private TextBox[] _sequenceInputs;
+        private TextBlock[] _sequenceTextBlocks; //Holds all non-input number UI elements in the sequence.
+        private TextBox[] _sequenceInputs; //Holds all input number UI elements in the sequence.
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public NumberSequencesQuiz()
         {
             QuizName = "Number Sequences";
             OperatorCategory = Operators.Generic;
-            TextInputRestriction = new Regex("^-?[\\d]{0,2}$");
+            TextInputRestriction = new Regex("^-?[\\d]{0,2}$"); //Allows user to enter a pos/neg 2 digit integer.
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Per question, randomly generates a base number, the common factor between the sequence numbers, and the index of the sequence the user has to fill in
+        /// </summary>
         public override void NewGame()
         {
             base.NewGame();
@@ -71,6 +78,10 @@ namespace Maths_Game_Prototype.Quizzes
             DisplayQuestion();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Displays all numbers in the number sequence apart from the index held in the question variables, which is a textbox the user has to fill in
+        /// </summary>
         protected override void DisplayQuestion()
         {
             base.DisplayQuestion();
@@ -103,6 +114,9 @@ namespace Maths_Game_Prototype.Quizzes
             }
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void LockQuestion(bool locked)
         {
             var currentQuestion = Questions[QuestionNumber];
@@ -112,6 +126,9 @@ namespace Maths_Game_Prototype.Quizzes
                 MainWindow.NextQBtn.Focus();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void CheckAnswer()
         {
             base.CheckAnswer();

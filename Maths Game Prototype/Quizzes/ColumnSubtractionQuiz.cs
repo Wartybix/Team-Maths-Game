@@ -8,6 +8,9 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal class ColumnSubtractionQuiz : ColumnAddSubQuiz
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ColumnSubtractionQuiz()
         {
             QuizName = "Column Subtraction";

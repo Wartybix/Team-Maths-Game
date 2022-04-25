@@ -10,6 +10,9 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal class MultiplicationTablesQuiz : Quiz
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MultiplicationTablesQuiz()
         {
             QuizName = "Multiplication Tables";

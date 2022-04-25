@@ -12,7 +12,7 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal abstract class ColumnAddSubQuiz : Quiz
     {
-        protected bool IsAddition;
+        protected bool IsAddition; //Stores whether the quiz is a column addition quiz or a column subtraction quiz.
 
         protected ColumnAddSubQuiz()
         {
@@ -20,6 +20,9 @@ namespace Maths_Game_Prototype.Quizzes
             TextInputRestriction = new Regex("(^-[\\d]{0,6}$)|(^[\\d]{0,7}$)"); //Only allows a 7 digit positive integer or 6 digit negative integer
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void NewGame()
         {
             base.NewGame();
@@ -50,6 +53,9 @@ namespace Maths_Game_Prototype.Quizzes
             DisplayQuestion();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void DisplayQuestion()
         {
             base.DisplayQuestion();
@@ -105,6 +111,9 @@ namespace Maths_Game_Prototype.Quizzes
             MainWindow.ColumnSubAddAnswerTb.Text = string.Empty; //Empties the user input textbox
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void LockQuestion(bool locked)
         {
             MainWindow.ColumnSubAddAnswerTb.IsEnabled = !locked;
@@ -115,6 +124,9 @@ namespace Maths_Game_Prototype.Quizzes
                 MainWindow.ColumnSubAddAnswerTb.Focus();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void CheckAnswer()
         {
             base.CheckAnswer();

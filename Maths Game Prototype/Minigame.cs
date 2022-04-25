@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Maths_Game_Prototype
 {
@@ -40,6 +41,8 @@ namespace Maths_Game_Prototype
             MainWindow.MinigameTooltipArea.Visibility = Visibility.Visible; //Shows the minigame's instructions.
             MainWindow.ToolArea.Visibility = Visibility.Collapsed; //Hides the tool area.
             MainWindow.Toolbar.Visibility = Visibility.Collapsed; //Hides the toolbar.
+            MainWindow.AnswerRevealArea.Background = Backgrounds.MinigameBackgroundLight; //Changes the answer reveal area to a pale blue.
+            MainWindow.AnswerRevealText.Foreground = new SolidColorBrush(Colors.MidnightBlue); //Changes the answer reveal text to a dark blue.
         }
 
         /// <summary>

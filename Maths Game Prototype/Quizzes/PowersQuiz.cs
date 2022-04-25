@@ -12,19 +12,26 @@ namespace Maths_Game_Prototype.Quizzes
     /// </summary>
     internal abstract class PowersQuiz : Quiz
     {
-        protected bool IsCube;
+        protected bool IsCube; //Holds whether the quiz is the cubing quiz or not.
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         protected PowersQuiz()
         {
             TextInputRestriction = new Regex("^[\\d]{0,4}$"); //Allows a 4 digit positive integer to be added.
             OperatorCategory = Operators.Generic;
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Generates a random number between ranges depending on if the current quiz is a cubing quiz or squaring quiz.
+        /// </summary>
         public override void NewGame()
         {
             base.NewGame();
 
-            var numberPower = IsCube ? 3 : 2;
+            var numberPower = IsCube ? 3 : 2; //If the current quiz is cubing quiz, sets number power to 3, otherwise sets it to 2.
 
             for (var index = 0; index < Questions.Length; index++)
             {
@@ -53,6 +60,10 @@ namespace Maths_Game_Prototype.Quizzes
             DisplayQuestion();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Displays the base for the user to find the value of sqaured/cubed.
+        /// </summary>
         protected override void DisplayQuestion()
         {
             base.DisplayQuestion();
@@ -63,6 +74,9 @@ namespace Maths_Game_Prototype.Quizzes
             MainWindow.PowersTb.Text = string.Empty;
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void LockQuestion(bool locked)
         {
             MainWindow.PowersTb.IsEnabled = !locked;
@@ -73,6 +87,9 @@ namespace Maths_Game_Prototype.Quizzes
                 MainWindow.PowersTb.Focus();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void CheckAnswer()
         {
             base.CheckAnswer();

@@ -655,7 +655,7 @@
     </Window.Resources>
 
     <Grid>
-        <Grid Name="WelcomeScreen" Background="{StaticResource Whiteish}">
+        <Grid Name="WelcomeScreen" Background="#F8FAB1">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Welcome to"/>
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
@@ -667,15 +667,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Name="KsMenu" Background="{StaticResource Whiteish}" Visibility="Collapsed">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Select key stage."/>
-                <Button Name="Ks2Btn" Content="KS2" Style="{StaticResource ListBtn}" Click="Ks2Btn_OnClick"/>
-                <Button Name="Ks3Btn" Content="KS3" Click="Ks3_OnClick" Style="{StaticResource ListBtn}" IsEnabled="False"/>
-            </StackPanel>
-        </Grid>
-
-        <Grid Name="QuizMenu" Background="{StaticResource Whiteish}" Visibility="Collapsed">
+        <Grid Name="QuizMenu" Background="#F8FAB1" Visibility="Collapsed">
 
             <Grid.RowDefinitions>
                 <RowDefinition Name="NavButtons" Height="Auto"/>
@@ -706,7 +698,7 @@
 
         </Grid>
 
-        <Grid Name="GameInstance" Background="LightSkyBlue" Visibility="Collapsed" KeyDown="QuizInstance_OnKeyDown" PreviewKeyDown="QuizInstance_OnPreviewKeyDown">
+        <Grid Name="GameInstance" Background="#F8FAB1" Visibility="Collapsed" KeyDown="QuizInstance_OnKeyDown" PreviewKeyDown="QuizInstance_OnPreviewKeyDown">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -1218,7 +1210,7 @@
                             </Grid>
                         </StackPanel>
                         </Border>
-                    <Border Name="NumberGridTool" Background="{StaticResource Whiteish}" Visibility="Collapsed">
+                    <Border Name="NumberGridTool" Background="#84CDF6" Visibility="Collapsed">
                         <Grid Name="NumberGrid">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -1274,10 +1266,10 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="1" Name="MinigameTooltip" Width="640" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock Grid.Column="1" Name="MinigameTooltip" Width="640" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" HorizontalAlignment="Left"/>
                 </Grid>
 
-                <Border Name="AnswerRevealArea" Padding="8" Background="{StaticResource Whiteish}" BorderBrush="LightGray" Visibility="Visible">
+                <Border Name="AnswerRevealArea" Padding="8" Background="#FEFFCB" BorderBrush="LightGray" Visibility="Visible">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -1293,7 +1285,7 @@
 
         </Grid>
 
-        <Grid Name="ResultsPage" Background="{StaticResource Whiteish}" Visibility="Collapsed">
+        <Grid Name="ResultsPage" Background="#F8FAB1" Visibility="Collapsed">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Name="QuizNameResultsTxt" Style="{StaticResource MediumText}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

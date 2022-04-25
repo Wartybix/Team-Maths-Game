@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Maths_Game_Prototype
 {
@@ -32,23 +33,25 @@ namespace Maths_Game_Prototype
         /// </summary>
         public virtual void NewGame()
         {
-            QuestionNumber = 0;
+            QuestionNumber = 0; //Resets the question number to the first question.
 
             MainWindow = (MainWindow) Application.Current.MainWindow;
             Randoms = new Random();
 
-            if (MainWindow == null) return;
+            if (MainWindow == null) return; //Leaves subroutine if MainWindow hasn't loaded yet.
 
-            MainWindow.GameNameTxt.Text = QuizName;
-            MainWindow.GameInstance.Background = Backgrounds.QuizBackground;
-            MainWindow.TitleColour.Background = OperatorCategory.LightColour;
-            MainWindow.PaperTip.Visibility = PaperTip ? Visibility.Visible : Visibility.Collapsed;
-            MainWindow.ScoreArea.Visibility = Visibility.Visible;
-            MainWindow.CheckAnsBtn.Visibility = Visibility.Visible;
-            MainWindow.MinigameTooltipArea.Visibility = Visibility.Collapsed;
+            MainWindow.GameNameTxt.Text = QuizName; //Sets quiz title
+            MainWindow.GameInstance.Background = Backgrounds.QuizBackground; //Sets background to yellow
+            MainWindow.TitleColour.Background = OperatorCategory.LightColour; //Sets the title colour to a lighter colour of the quiz's operator catergory.
+            MainWindow.PaperTip.Visibility = PaperTip ? Visibility.Visible : Visibility.Collapsed; //Shows or hides the 'do workings on paper' tip depending on if it is enabled for this quiz.
+            MainWindow.ScoreArea.Visibility = Visibility.Visible; //Shows the score area
+            MainWindow.CheckAnsBtn.Visibility = Visibility.Visible; //Shows the 'check' button on the bottom right corner
+            MainWindow.MinigameTooltipArea.Visibility = Visibility.Collapsed; //Hides the minigame instructions
             MainWindow.ToolArea.Visibility = Visibility.Collapsed; //Hides the tool area.
             MainWindow.Toolbar.Visibility = Visibility.Visible; //Shows the toolbar.
-            MainWindow.ResetScore();
+            MainWindow.AnswerRevealArea.Background = Backgrounds.QuizBackgroundLight; //Sets the answer reveal area background to yellow.
+            MainWindow.AnswerRevealText.Foreground = new SolidColorBrush(Colors.Black); //Sets the answer reveal text to black.
+            MainWindow.ResetScore(); //Sets the user's score to 0.
         }
         
         /// <summary>
@@ -85,6 +88,7 @@ namespace Maths_Game_Prototype
         /// <summary>
         /// Sets up the UI to display the current question.
         /// Enables input of answer textboxes.
+        /// Clears all text of answer textboxes.
         /// </summary>
         protected virtual void DisplayQuestion()
         {
@@ -135,7 +139,6 @@ namespace Maths_Game_Prototype
         public void WrongAnswer(string expectedAnswer)
         {
             MainWindow.AnswerRevealText.Text = $"No. The answer is {expectedAnswer}.";
-            //MainWindow.PlaySound(Sounds.disappointment);
         }
     }
 }

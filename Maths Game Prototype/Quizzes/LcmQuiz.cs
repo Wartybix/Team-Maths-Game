@@ -9,6 +9,9 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal class LcmQuiz : CommonNumbersQuiz
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public LcmQuiz()
         {
             QuizName = "Lowest Common Multiple";

@@ -15,6 +15,9 @@ namespace Maths_Game_Prototype.Quizzes
     {
         private TextBlock[] _dividendTbs; //Holds all textboxes of the dividend on screen.
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public BusStopDivisionQuiz()
         {
             QuizName = "Bus Stop Method";
@@ -46,6 +49,12 @@ namespace Maths_Game_Prototype.Quizzes
             return false;
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Randomly generates a dividend integer between 0 and 9999
+        /// Randomly generates a divisor integer between 1 and 21.
+        /// Sets the answer to the dividend divided by the divisor.
+        /// </summary>
         public override void NewGame()
         {
             base.NewGame();
@@ -80,6 +89,9 @@ namespace Maths_Game_Prototype.Quizzes
             DisplayQuestion();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void DisplayQuestion()
         {
             base.DisplayQuestion();
@@ -106,6 +118,9 @@ namespace Maths_Game_Prototype.Quizzes
             MainWindow.BusStopAnsTb.Text = string.Empty;
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void LockQuestion(bool locked)
         {
             MainWindow.BusStopAnsTb.IsEnabled = !locked;
@@ -116,6 +131,9 @@ namespace Maths_Game_Prototype.Quizzes
                 MainWindow.BusStopAnsTb.Focus();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void CheckAnswer()
         {
             base.CheckAnswer();

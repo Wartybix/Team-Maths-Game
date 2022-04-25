@@ -114,13 +114,13 @@ namespace Maths_Game_Prototype
                 QuizSelector.Children.Add(quizBtn); //Adds button to the quiz stackpanel.
             }
 
-            foreach (var minigame in _minigames)
+            foreach (var minigame in _minigames) //Generates the menu card for each minigame.
             {
                 var border = new Border
                 {
                     //BorderBrush = new SolidColorBrush(Colors.Transparent),
                     Margin = new Thickness(0, 2, 0, 2),
-                    Background = new SolidColorBrush(Colors.LightGray)
+                    Background = Backgrounds.QuizBackgroundLight
                 };
             
                 var frameSp = new StackPanel();
@@ -176,6 +176,10 @@ namespace Maths_Game_Prototype
         #endregion
 
         #region Quiz Logic
+
+        /// <summary>
+        /// Fills the number grid with numbers from 0-99, each with black borders around them.
+        /// </summary>
         private void PopulateNumberGrid()
         {
             for (int x = 0; x < NumberGrid.RowDefinitions.Count; x++)
@@ -194,11 +198,11 @@ namespace Maths_Game_Prototype
 
                     border.Child = new TextBlock
                     {
-                        Text = numValue.ToString(),
+                        Text = (numValue + 1).ToString(),
                         Margin = new Thickness(0, 2, 0, 2),
-                        Width = 32,
+                        Width = y == 9 ? 40 : 32,
                         TextAlignment = TextAlignment.Center,
-                        Foreground = new SolidColorBrush(numValue % 2 == 0 ? Colors.PaleVioletRed : Colors.SteelBlue),
+                        Foreground = new SolidColorBrush(Colors.MidnightBlue),
                         FontFamily = Resources["ComicNeue-Bold"] as FontFamily
                     };
 
@@ -207,17 +211,22 @@ namespace Maths_Game_Prototype
             }
         }
 
+        /// <summary>
+        /// Opens the tool clicked on or closes it if it is already open.
+        /// If another tool is already open it is closed before the clicked on tool is opened.
+        /// </summary>
+        /// <param name="tool">The tool clicked on</param>
         private void SelectTool(Border tool)
         {
-            if (_currentlyOpenTool != null) _currentlyOpenTool.Visibility = Visibility.Collapsed;
-            if (_currentlyOpenTool == tool && ToolArea.Visibility == Visibility.Visible)
+            if (_currentlyOpenTool != null) _currentlyOpenTool.Visibility = Visibility.Collapsed; //If there is a tool currently open, it is hidden.
+            if (_currentlyOpenTool == tool && ToolArea.Visibility == Visibility.Visible) //If the clicked on tool is already open, it is collapsed and the procedure ends.
             {
                 ToolArea.Visibility = Visibility.Collapsed;
                 return;
             }
-            _currentlyOpenTool = tool;
-            ToolArea.Visibility = Visibility.Visible;
-            tool.Visibility = Visibility.Visible;
+            _currentlyOpenTool = tool; //Sets the currently open tool to the tool clicked on
+            ToolArea.Visibility = Visibility.Visible; //Shows the layout for the tool area if not already shown.
+            tool.Visibility = Visibility.Visible; //Shows the tool clicked on.
         }
 
         /// <summary>
@@ -312,15 +321,6 @@ namespace Maths_Game_Prototype
             _currentMinigame.NewGame();
         }
 
-        private void Ks2Btn_OnClick(object sender, RoutedEventArgs e)
-        {
-            TransitionTo(QuizMenu);
-        }
-        private void Ks3_OnClick(object sender, RoutedEventArgs e)
-        {
-            TransitionTo(QuizMenu);
-        }
-
         /// <summary>
         /// Goes back to the welcome screen from the main menu.
         /// </summary>
@@ -405,6 +405,9 @@ namespace Maths_Game_Prototype
                 //Sets cursor to paint bucket icon associated with the paint pot clicked on.
         }
 
+        /// <summary>
+        /// Sets the user's answer to 'prime' in the prime numbers quiz, checks it, and gives result.
+        /// </summary>
         private void PrimeBtn_OnClick(object sender, RoutedEventArgs e)
         {
             var quiz = _currentQuiz as PrimeCompositeNumbersQuiz;
@@ -412,6 +415,9 @@ namespace Maths_Game_Prototype
             quiz.CheckAnswer();
         }
 
+        /// <summary>
+        /// Sets the user's answer to 'composite' in the prime numbers quiz, checks it, and gives result.
+        /// </summary>
         private void CompositeBtn_OnClick(object sender, RoutedEventArgs e)
         {
             var quiz = _currentQuiz as PrimeCompositeNumbersQuiz;
@@ -419,10 +425,17 @@ namespace Maths_Game_Prototype
             quiz.CheckAnswer();
         }
 
+        /// <summary>
+        /// Shows or hides the calculator depending on whether it's already showing or not.
+        /// </summary>
         private void CalcToolbarBtn_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             SelectTool(CalculatorTool);
         }
+
+        /// <summary>
+        /// Shows or hides the number grid depending on whether it's already showing or not.
+        /// </summary>
         private void GridToolbarBtn_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             SelectTool(NumberGridTool);
@@ -517,6 +530,9 @@ namespace Maths_Game_Prototype
 
         #region Calc Logic
 
+        /// <summary>
+        /// Empties the calculator's displayed text, stored text, and stored operator, and sets the calculator's accumulator to 0.
+        /// </summary>
         public void ResetCalc()
         {
             SetCalcText(string.Empty);
@@ -525,39 +541,53 @@ namespace Maths_Game_Prototype
             _calcAcc = 0;
         }
 
+        /// <summary>
+        /// Returns the text currently displayed to the user.
+        /// </summary>
         private string GetCalcText()
         {
             return CalcDisplay.Text;
         }
 
+        /// <summary>
+        /// Sets the calculator display to the text given in the parameter.
+        /// </summary>
+        /// <param name="text">The text to be displayed</param>
         private void SetCalcText(string text)
         {
             CalcDisplay.Text = text;
         }
 
+        /// <summary>
+        /// Returns whether the calculator has overflown.
+        /// </summary>
+        /// <returns>True for overflow, False otherwise</returns>
         private bool CalcOverflown()
         {
             return GetCalcText() == "Overflow";
         }
 
+        /// <summary>
+        /// Performs an operation with number entered by the user with the accumulator depending on the currently stored operator.
+        /// </summary>
         private void Calculate()
         {
             double enteredNumber;
 
             if (CalcOverflown()) return;
 
-            try
+            try //Tests to see if the entered number is valid and returns if not.
             {
-                enteredNumber = Convert.ToDouble(GetCalcText());
+                enteredNumber = Convert.ToDouble(GetCalcText()); //Converts entered number into a double (decimal number).
             }
             catch
             {
                 return;
             }
 
-            enteredNumber = Convert.ToDouble(GetCalcText());
+            enteredNumber = Convert.ToDouble(GetCalcText()); //Converts entered number into a double (decimal number).
 
-            if (_calcOperator == null)
+            if (_calcOperator == null) //If no operation is selected yet, the text the user writes to is cleared and the accumulator now holds the number entered, and returns.
             {
                 _calcDisplayTxt = string.Empty;
                 _calcAcc = enteredNumber;
@@ -566,7 +596,7 @@ namespace Maths_Game_Prototype
 
             double result = 0;
 
-            switch (_calcOperator)
+            switch (_calcOperator) //Performs operation on the accumulator and number just entered depending on the operator stored.
             {
                 case '+':
                     result = _calcAcc + enteredNumber;
@@ -582,19 +612,21 @@ namespace Maths_Game_Prototype
                     break;
             }
 
-            var strResult = result.ToString();
+            var strResult = result.ToString(); //Converts result to text.
 
-            if (strResult.Length > _calcDisplayMaxLength)
+            if (strResult.Length > _calcDisplayMaxLength) //If result length has more digits than what the calculator can display
             {
                 Char shavedDigit = '\0';
-                while (strResult.Length > _calcDisplayMaxLength && strResult.Contains("."))
+                while (strResult.Length > _calcDisplayMaxLength && strResult.Contains(".")) //Attempts to remove all righthand digits after decimal point until it can fit on screen.
                 {
                     shavedDigit = strResult.Last();
                     strResult = strResult.Remove(strResult.Length - 1, 1);
                 }
 
-                if (strResult.Length <= _calcDisplayMaxLength)
+                if (strResult.Length <= _calcDisplayMaxLength) //If the screen can display the trimmed number,
                 {
+                    //Rounds the last digit up or down depending on the value of the last shaved digit.
+
                     strResult += shavedDigit;
 
                     var decimalPlacesToRoundTo = strResult.Length - strResult.IndexOf(".") - 2;
@@ -607,83 +639,110 @@ namespace Maths_Game_Prototype
                     SetCalcText(strResult);
                     _calcDisplayTxt = string.Empty;
                 }
-                else
+                else //If screen still cannot display the number
                 {
+                    //Sets accumulator to 0 and displays overflow error.
+
                     _calcAcc = 0;
                     SetCalcText("Overflow");
                     _calcDisplayTxt = string.Empty;
                 }
             }
-            else
+            else //Number can be displayed on screen
             {
+                //Displays the result
+
                 _calcAcc = result;
                 SetCalcText(strResult);
                 _calcDisplayTxt = string.Empty;
             }
-
-            _calcOperator = null;
+            
+            _calcOperator = null; //Clears the current operator.
         }
 
+        /// <summary>
+        /// Appends the digit clicked on to the calculator's display text as well as internal text for performing operations with
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Digit_OnClick(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
-            var btnTxt = btn.Content.ToString();
+            var btnTxt = btn.Content.ToString(); //Gets the digit of the button pressed as a string.
 
             var calcText = _calcDisplayTxt;
 
-            if (calcText.Length >= _calcDisplayMaxLength) return;
+            if (calcText.Length >= _calcDisplayMaxLength) return; //If the calculator display is at max length, return.
 
-            if (calcText == "0" && btnTxt != ".") return;
+            if (calcText == "0" && btnTxt != ".") return; //If text written to the calculator is 0 and the button pressed isn't a ".", return.
 
-            if (calcText == string.Empty && btnTxt == ".") return;
+            if (calcText == string.Empty && btnTxt == ".") return; //If user attempts to write "." as the first digit, return.
 
-            if (calcText.Contains(".") && btnTxt == ".") return;
+            if (calcText.Contains(".") && btnTxt == ".") return; //If the user attempts to write two "."s in the same number, return.
 
-            _calcDisplayTxt = calcText + btnTxt;
-            SetCalcText(_calcDisplayTxt);
+            _calcDisplayTxt = calcText + btnTxt; //Append the text of the button pressed to the calculator's displayed text.
+            SetCalcText(_calcDisplayTxt); //Refresh calculator display with the new text.
         }
 
+        /// <summary>
+        /// Either resets the calculator or removes last typed character depending on whether used has clicked AC or backspace.
+        /// </summary>
         private void ModifierBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            var btnTxt = (sender as Button).Content.ToString();
+            var btnTxt = (sender as Button).Content.ToString(); //Gets text of button pressed
 
-            if (btnTxt == "AC")
+            if (btnTxt == "AC") //If button pressed is the AC button
             {
-                ResetCalc();
-                return;
+                ResetCalc(); //Resets the calculator
+                return; //Returns
             }
 
-            if (_calcDisplayTxt.Length > 0)
+            if (_calcDisplayTxt.Length > 0) //If there is at least 1 typed character in the calculator text
             {
-                _calcDisplayTxt = _calcDisplayTxt.Remove(_calcDisplayTxt.Length - 1, 1);
-                SetCalcText(_calcDisplayTxt);
+                _calcDisplayTxt = _calcDisplayTxt.Remove(_calcDisplayTxt.Length - 1, 1); //Removes the last typed character from the calculator text
+                SetCalcText(_calcDisplayTxt); //Refreshes the display to the new value
             }
         }
 
+        /// <summary>
+        /// Calculates with the operator stored as 'divide'.
+        /// </summary>
         private void DivideBtn_OnClick(object sender, RoutedEventArgs e)
         {
             Calculate();
             _calcOperator = '/';
         }
 
+        /// <summary>
+        /// Calculates with the operator stored as 'multiply'.
+        /// </summary>
         private void MultiplyBtn_OnClick(object sender, RoutedEventArgs e)
         {
             Calculate();
             _calcOperator = '*';
         }
 
+        /// <summary>
+        /// Calculates with the operator stored as 'add'.
+        /// </summary>
         private void AddBtn_OnClick(object sender, RoutedEventArgs e)
         {
             Calculate();
             _calcOperator = '+';
         }
 
+        /// <summary>
+        /// Calculates with the operator stored as 'subtract'.
+        /// </summary>
         private void SubtractBtn_OnClick(object sender, RoutedEventArgs e)
         {
             Calculate();
             _calcOperator = '-';
         }
 
+        /// <summary>
+        /// Calculates using the calculator's accumulator, written text and stored operator.
+        /// </summary>
         private void Equals_OnClick(object sender, RoutedEventArgs e)
         {
             Calculate();

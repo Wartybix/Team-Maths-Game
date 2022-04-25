@@ -20,7 +20,7 @@ namespace Maths_Game_Prototype
         {
             QuizName = "Mental Maths";
             OperatorCategory = Operators.Generic;
-            TextInputRestriction = new Regex("(^[\\d]{0,2}$)|(^-[\\d]?$)");
+            TextInputRestriction = new Regex("(^[\\d]{0,2}$)|(^-[\\d]?$)"); //Allows a 2 digit positive integer or a 1 digit negative integer.
         }
 
         /// <summary>
@@ -90,6 +90,9 @@ namespace Maths_Game_Prototype
                 MainWindow.MentalMathsAnsTb.Focus();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void CheckAnswer()
         {
             base.CheckAnswer();

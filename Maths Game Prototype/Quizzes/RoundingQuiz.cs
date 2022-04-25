@@ -12,6 +12,9 @@ namespace Maths_Game_Prototype.Quizzes
     {
         protected bool IntegerRounding = true;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public RoundingQuiz()
         {
             QuizName = "Rounding";
@@ -19,6 +22,10 @@ namespace Maths_Game_Prototype.Quizzes
             TextInputRestriction = new Regex("^[\\d]{0,4}$"); //Allows a positive 4 digit integer to be typed
         }
 
+        /// <summary>
+        /// See parent class definition#
+        /// For each question, generates an unrounded number, a random multiple of 10 to round it to, and sets the answer to the number rounded.
+        /// </summary>
         public override void NewGame()
         {
             base.NewGame();
@@ -61,6 +68,10 @@ namespace Maths_Game_Prototype.Quizzes
             DisplayQuestion();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Displays the rounded number and the nearest number to round to.
+        /// </summary>
         protected override void DisplayQuestion()
         {
             base.DisplayQuestion();
@@ -74,6 +85,9 @@ namespace Maths_Game_Prototype.Quizzes
                 MainWindow.RoundToNumTxt.Text = currentQuestion.QuestionVariables["roundBy"].ToString();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void LockQuestion(bool locked)
         {
             MainWindow.RoundingInputTb.IsEnabled = !locked;
@@ -84,6 +98,9 @@ namespace Maths_Game_Prototype.Quizzes
                 MainWindow.RoundingInputTb.Focus();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void CheckAnswer()
         {
             base.CheckAnswer();

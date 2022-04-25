@@ -10,14 +10,25 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal class AlgebraQuiz : Quiz
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public AlgebraQuiz()
         {
             QuizName = "Algebra: Missing Numbers";
             OperatorCategory = Operators.Generic;
             PaperTip = true;
-            TextInputRestriction = new Regex("^[\\d]{0,2}$");
+            TextInputRestriction = new Regex("^[\\d]{0,2}$"); //Allows a two digit positive integer to be entered
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Randomly generates two numbers between 1 and 20 and stores them.
+        /// Randomly generates an operator of +, -, or * and stores this also.
+        /// Randomly generates the index of one of the the equation operands the user has to fill in and stores this.
+        /// Works out the sum of the equation and stores this.
+        /// Sets the answer to either one of the equation operands depending on the index generated.
+        /// </summary>
         public override void NewGame()
         {
             base.NewGame();
@@ -68,6 +79,13 @@ namespace Maths_Game_Prototype.Quizzes
             DisplayQuestion();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Displays the answer to the sum to the right of the equals sign.
+        /// Displays the operator of the equation between the two operands.
+        /// Displays text representing one of the operands on one side of the operator and a textbox on the other.
+        /// The order depends on the answer index generated (if the answer index is 0, the textbox will be on the left).
+        /// </summary>
         protected override void DisplayQuestion()
         {
             base.DisplayQuestion();
@@ -103,6 +121,9 @@ namespace Maths_Game_Prototype.Quizzes
             LockQuestion(false);
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void LockQuestion(bool locked)
         {
             var currentQuestion = Questions[QuestionNumber];
@@ -118,6 +139,9 @@ namespace Maths_Game_Prototype.Quizzes
                 tbToLock.Focus();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void CheckAnswer()
         {
             base.CheckAnswer();

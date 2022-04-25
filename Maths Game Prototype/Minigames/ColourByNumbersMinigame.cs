@@ -102,6 +102,9 @@ namespace Maths_Game_Prototype.Minigames
             MainWindow.NextQBtn.Content = new TextBlock {Text = "Finish"}; // Prompts user to leave
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void LockGame(bool locked)
         {
             MainWindow.CateBackground.IsEnabled = !locked; //Disables user from interacting with the picture & filling it with colours.

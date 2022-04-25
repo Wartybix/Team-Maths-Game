@@ -8,7 +8,10 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal class CubingQuiz : PowersQuiz
     {
-        public CubingQuiz() : base()
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public CubingQuiz()
         {
             QuizName = "Cubing Numbers";
             PaperTip = true;

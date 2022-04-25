@@ -10,13 +10,21 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal class WordsToDigitsQuiz : Quiz
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public WordsToDigitsQuiz()
         {
             QuizName = "Words to Digits";
             OperatorCategory = Operators.Generic;
-            TextInputRestriction = new Regex("^-?[\\d]{0,4}$");
+            TextInputRestriction = new Regex("^-?[\\d]{0,4}$"); //Allows a pos/neg 4 digit number to be typed
         }
 
+        /// <summary>
+        /// Takes in a number, and returns the absolute number typed as words
+        /// </summary>
+        /// <param name="number">The number to convert</param>
+        /// <returns>A string of text containing the absolute number in words</returns>
         private static string AbsNumberToWords(int number)
         {
             const int maxNumberCharLength = 4;
@@ -86,6 +94,10 @@ namespace Maths_Game_Prototype.Quizzes
             return string.Join(" ", textOutput);
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Generates a random 4 digit number, and stores its value converted into words, whether its negative or not, and sets the answer to the number itself converted to a string.
+        /// </summary>
         public override void NewGame()
         {
             base.NewGame();
@@ -108,6 +120,11 @@ namespace Maths_Game_Prototype.Quizzes
             DisplayQuestion();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Shows text of number to be entered as words.
+        /// Shows or hides the pink 'minus' text depending on whether the number is negative or not.
+        /// </summary>
         protected override void DisplayQuestion()
         {
             base.DisplayQuestion();
@@ -121,6 +138,9 @@ namespace Maths_Game_Prototype.Quizzes
             MainWindow.WtdWordedNumberTxt.Text = currentQuestion.QuestionVariables["numInWords"];
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void LockQuestion(bool locked)
         {
             MainWindow.WtdTb.IsEnabled = !locked;
@@ -131,6 +151,9 @@ namespace Maths_Game_Prototype.Quizzes
                 MainWindow.WtdTb.Focus();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void CheckAnswer()
         {
             base.CheckAnswer();

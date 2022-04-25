@@ -8,6 +8,9 @@ namespace Maths_Game_Prototype.Quizzes
 {
     internal class SquaringQuiz : PowersQuiz
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public SquaringQuiz() : base()
         {
             QuizName = "Squaring Whole Numbers";

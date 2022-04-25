@@ -12,6 +12,9 @@ namespace Maths_Game_Prototype.Quizzes
     {
         protected bool IsLcmQuiz; //Holds whether the current quiz is a Lowest Common Multiple quiz.
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         protected CommonNumbersQuiz()
         {
             PaperTip = true;
@@ -53,6 +56,12 @@ namespace Maths_Game_Prototype.Quizzes
             return a | b;
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Changes text in UI to say 'lowest common multiple' or 'highest common factor' depending on IsLcmQuiz variable.
+        /// For each question, generates two random numbers between 1 and 100 and stores them
+        /// Sets the answer to either the GCD or LCM of these numbers depending on IsLcmQuiz variable.
+        /// </summary>
         public override void NewGame()
         {
             base.NewGame();
@@ -81,6 +90,10 @@ namespace Maths_Game_Prototype.Quizzes
             DisplayQuestion();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// Displays the two numbers to be considered.
+        /// </summary>
         protected override void DisplayQuestion()
         {
             base.DisplayQuestion();
@@ -95,6 +108,9 @@ namespace Maths_Game_Prototype.Quizzes
             MainWindow.CommonNumbersTb.Text = string.Empty;
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         protected override void LockQuestion(bool locked)
         {
             MainWindow.CommonNumbersTb.IsEnabled = !locked;
@@ -105,6 +121,9 @@ namespace Maths_Game_Prototype.Quizzes
                 MainWindow.CommonNumbersTb.Focus();
         }
 
+        /// <summary>
+        /// See parent class definition
+        /// </summary>
         public override void CheckAnswer()
         {
             base.CheckAnswer();
